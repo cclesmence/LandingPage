@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tư Vấn Phong Cách Nội Thất – Xưởng Nội Thất</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #8B6914;
+      --primary-light: #a8821e;
+      --primary-bg: #F5F0E8;
+      --white: #ffffff;
+      --text: #1A1A1A;
+      --text-muted: #6b6b6b;
+      --border: #e0d9cc;
+      --error: #c0392b;
+      --success: #27ae60;
+      --radius: 12px;
+      --shadow-card: 0 4px 16px rgba(139,105,20,0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      color: var(--text);
+      background: #faf9f7;
+      min-height: 100vh;
+      padding-bottom: 40px;
+    }
+
+    /* ─── HEADER ─── */
+    .site-header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 20px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .site-header .logo {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--primary);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    /* ─── CONTAINER ─── */
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ─── ACCORDION ─── */
+    .accordion-step {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      margin: 10px 0;
+      overflow: hidden;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .accordion-step[open] {
+      box-shadow: var(--shadow-card);
+      border-color: rgba(139,105,20,0.4);
+    }
+    .accordion-summary {
+      padding: 16px 20px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text);
+      user-select: none;
+    }
+    .accordion-summary::-webkit-details-marker { display: none; }
+    .accordion-summary .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      background: var(--primary-bg);
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 800;
+      border-radius: 50%;
+      flex-shrink: 0;
+      transition: background 0.2s, color 0.2s;
+    }
+    .accordion-step[open] .accordion-summary .step-num {
+      background: var(--primary);
+      color: #fff;
+    }
+    .accordion-summary .step-title { flex: 1; }
+    .accordion-summary .chevron {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      transition: transform 0.25s;
+      color: var(--primary);
+    }
+    .accordion-step[open] .accordion-summary .chevron { transform: rotate(180deg); }
+    .accordion-body {
+      padding: 0 20px 24px;
+      border-top: 1px solid var(--border);
+    }
+    .step-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      padding: 12px 0 4px;
+      margin-bottom: 10px;
+    }
+
+    /* ─── SUBMIT WRAP ─── */
+    .submit-wrap {
+      padding: 28px 0 12px;
+    }
+    .btn-submit {
+      width: 100%;
+      padding: 16px;
+      font-size: 16px;
+    }
+
+    /* ─── FORM FIELDS ─── */
+    .field-group { margin-bottom: 18px; }
+    .field-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+    .field-group label .required {
+      color: var(--primary);
+      margin-left: 2px;
+    }
+    .field-group input,
+    .field-group select,
+    .field-group textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      color: var(--text);
+      background: var(--white);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      -webkit-appearance: none;
+    }
+    .field-group input:focus,
+    .field-group select:focus,
+    .field-group textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(139,105,20,0.12);
+    }
+    .field-group input.error,
+    .field-group select.error,
+    .field-group textarea.error {
+      border-color: var(--error);
+    }
+    .field-group textarea { resize: vertical; min-height: 100px; }
+    .field-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238B6914' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+      cursor: pointer;
+    }
+    .field-error {
+      font-size: 12px;
+      color: var(--error);
+      margin-top: 5px;
+      display: none;
+    }
+    .field-error.visible { display: block; }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 480px) {
+      .field-row { grid-template-columns: 1fr; }
+    }
+
+    /* ─── CARD GRID ─── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-bottom: 8px;
+    }
+    @media (min-width: 560px) {
+      .card-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .selection-card {
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      background: var(--white);
+      user-select: none;
+    }
+    .selection-card:hover {
+      transform: scale(1.02);
+      border-color: rgba(139,105,20,0.4);
+    }
+    .selection-card.selected {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-card);
+    }
+    .card-img-wrap {
+      position: relative;
+      padding-top: 75%; /* 4:3 ratio */
+      overflow: hidden;
+      background: var(--primary-bg);
+    }
+    .card-img-wrap img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+    .selection-card:hover .card-img-wrap img { transform: scale(1.05); }
+    .card-check {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 26px;
+      height: 26px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: scale(0.6);
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .selection-card.selected .card-check {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .card-check svg { width: 14px; height: 14px; stroke: #fff; stroke-width: 2.5; fill: none; }
+    .card-body { padding: 10px 12px 12px; }
+    .card-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+    .card-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .selection-hint {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      margin-bottom: 16px;
+    }
+
+    /* ─── CHECKBOX GROUP ─── */
+    .checkbox-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    @media (min-width: 520px) {
+      .checkbox-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      background: var(--white);
+      user-select: none;
+    }
+    .checkbox-item:hover { border-color: rgba(139,105,20,0.4); }
+    .checkbox-item.checked {
+      border-color: var(--primary);
+      background: var(--primary-bg);
+    }
+    .checkbox-box {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--border);
+      border-radius: 4px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .checkbox-item.checked .checkbox-box {
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+    .checkbox-box svg { width: 10px; height: 10px; stroke: #fff; stroke-width: 3; fill: none; opacity: 0; }
+    .checkbox-item.checked .checkbox-box svg { opacity: 1; }
+    .checkbox-label { font-size: 14px; font-weight: 500; }
+    .checkbox-item input[type="checkbox"] { display: none; }
+
+    /* ─── RADIO GROUP ─── */
+    .radio-group { margin-bottom: 20px; }
+    .radio-group-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+    .radio-options { display: flex; flex-direction: column; gap: 8px; }
+    .radio-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      background: var(--white);
+      user-select: none;
+    }
+    .radio-item:hover { border-color: rgba(139,105,20,0.4); }
+    .radio-item.selected {
+      border-color: var(--primary);
+      background: var(--primary-bg);
+    }
+    .radio-dot {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--border);
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.2s;
+    }
+    .radio-item.selected .radio-dot { border-color: var(--primary); }
+    .radio-dot::after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: var(--primary);
+      border-radius: 50%;
+      opacity: 0;
+      transform: scale(0);
+      transition: opacity 0.15s, transform 0.15s;
+    }
+    .radio-item.selected .radio-dot::after { opacity: 1; transform: scale(1); }
+    .radio-item input[type="radio"] { display: none; }
+    .radio-text { font-size: 14px; font-weight: 500; }
+
+    /* ─── BUTTONS ─── */
+    .btn {
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+      outline: none;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: var(--white);
+    }
+    .btn-primary:hover { background: var(--primary-light); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(139,105,20,0.3); }
+    .btn-primary:active { transform: translateY(0); }
+
+    /* ─── GLOBAL ERROR ─── */
+    .global-error {
+      background: #fdecea;
+      border: 1px solid #f5c6c2;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: var(--error);
+      margin-top: 8px;
+      display: none;
+    }
+    .global-error.visible { display: block; }
+
+    /* ─── LOADING OVERLAY ─── */
+    .loading-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(4px);
+      z-index: 9999;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+    .loading-overlay.active { display: flex; }
+    .spinner {
+      width: 44px;
+      height: 44px;
+      border: 4px solid var(--primary-bg);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading-text { font-size: 15px; font-weight: 500; color: var(--text-muted); }
+
+    /* ─── RESULT PAGE ─── */
+    #result-page { display: none; padding-top: 28px; }
+    .result-hero {
+      background: linear-gradient(135deg, var(--primary-bg) 0%, #ede4d0 100%);
+      border-radius: 16px;
+      padding: 32px 24px;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .result-icon { font-size: 52px; margin-bottom: 12px; }
+    .result-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+    .result-subtitle {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .result-style-badge {
+      display: inline-block;
+      background: var(--primary);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 99px;
+      margin: 14px 0 0;
+    }
+    .result-summary {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .result-summary-title {
+      background: var(--primary-bg);
+      padding: 12px 20px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: var(--primary);
+      text-transform: uppercase;
+    }
+    .summary-row {
+      display: flex;
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--border);
+      gap: 12px;
+    }
+    .summary-row:last-child { border-bottom: none; }
+    .summary-key {
+      font-size: 13px;
+      color: var(--text-muted);
+      flex: 0 0 130px;
+      line-height: 1.5;
+    }
+    .summary-val {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+      flex: 1;
+      line-height: 1.5;
+    }
+    .result-notice {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: #f0faf4;
+      border: 1px solid #b8e6cd;
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 20px;
+    }
+    .result-notice-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+    .result-notice p { font-size: 14px; color: #1a6b3c; font-weight: 500; line-height: 1.5; }
+    .btn-share {
+      width: 100%;
+      padding: 14px;
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 12px;
+    }
+    .btn-share:hover { background: var(--primary-light); transform: translateY(-1px); }
+    .btn-restart {
+      width: 100%;
+      padding: 12px;
+      background: transparent;
+      color: var(--text-muted);
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-restart:hover { border-color: var(--primary); color: var(--primary); }
+
+    /* ─── SUBMIT ERROR ─── */
+    .submit-error-box {
+      background: #fdecea;
+      border: 1px solid #f5c6c2;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-top: 16px;
+      display: none;
+    }
+    .submit-error-box.visible { display: block; }
+    .submit-error-box p { font-size: 14px; color: #8b2020; margin-bottom: 10px; }
+    .btn-retry {
+      background: var(--error);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 20px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-retry:hover { background: #a93226; }
+
+    /* ─── MISC ─── */
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 24px 0;
+    }
+    @media (max-width: 360px) {
+      .accordion-summary { font-size: 13px; }
+      .card-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ─── ROOM CHECKBOX GRID ─── */
+    .room-check-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    @media (min-width: 480px) {
+      .room-check-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    .room-check-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: 14px 10px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      background: var(--white);
+      user-select: none;
+      text-align: center;
+    }
+    .room-check-item:hover { border-color: rgba(139,105,20,0.4); }
+    .room-check-item.checked { border-color: var(--primary); background: var(--primary-bg); }
+    .room-check-item .room-icon { font-size: 26px; line-height: 1; }
+    .room-check-item .room-label { font-size: 11px; font-weight: 600; color: var(--text); line-height: 1.3; }
+
+    /* ─── COLOR SWATCHES ─── */
+    .swatch-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 6px; }
+    .swatch-item { display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; user-select: none; }
+    .swatch-circle {
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 2.5px solid transparent;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+      transition: transform 0.15s, border-color 0.15s;
+    }
+    .swatch-item:hover .swatch-circle { transform: scale(1.1); }
+    .swatch-item.selected .swatch-circle { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(139,105,20,0.22); }
+    .swatch-label { font-size: 10px; color: var(--text-muted); text-align: center; max-width: 46px; line-height: 1.2; }
+
+    /* ─── ROOM DETAIL PANELS ─── */
+    .room-panel { border: 1.5px solid var(--border); border-radius: 10px; margin-bottom: 12px; overflow: hidden; background: var(--white); }
+    .room-panel[open] { border-color: rgba(139,105,20,0.35); box-shadow: 0 2px 10px rgba(139,105,20,0.1); }
+    .room-panel-summary {
+      list-style: none; padding: 13px 16px; display: flex; align-items: center;
+      gap: 10px; cursor: pointer; font-size: 14px; font-weight: 700; user-select: none;
+    }
+    .room-panel-summary::-webkit-details-marker { display: none; }
+    .room-panel-summary .rp-icon { font-size: 20px; }
+    .room-panel-summary .rp-chevron { width: 16px; height: 16px; margin-left: auto; color: var(--primary); transition: transform 0.25s; flex-shrink: 0; }
+    .room-panel[open] .room-panel-summary .rp-chevron { transform: rotate(180deg); }
+    .room-panel-body { padding: 0 16px 20px; border-top: 1px solid var(--border); }
+    .rp-section-title { font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin: 14px 0 8px; }
+
+    #room-details-container { margin-top: 8px; }
+    .step3-empty { font-size: 14px; color: var(--text-muted); padding: 10px 0 4px; }
+
+    /* ─── PHOTO UPLOAD ─── */
+    .photo-drop-area {
+      border: 2px dashed var(--border); border-radius: 8px; padding: 16px;
+      text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s;
+    }
+    .photo-drop-area:hover { border-color: var(--primary); background: var(--primary-bg); }
+    .photo-drop-area input[type="file"] { display: none; }
+    .photo-drop-hint { font-size: 13px; color: var(--text-muted); }
+    .photo-preview-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .photo-thumb { position: relative; width: 64px; height: 64px; border-radius: 6px; overflow: hidden; background: var(--primary-bg); flex-shrink: 0; }
+    .photo-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .photo-thumb-remove {
+      position: absolute; top: 2px; right: 2px; width: 18px; height: 18px;
+      background: rgba(0,0,0,0.55); color: #fff; border-radius: 50%; border: none;
+      cursor: pointer; font-size: 12px; line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .photo-size-error { font-size: 12px; color: var(--error); margin-top: 4px; display: none; }
+    .photo-size-error.visible { display: block; }
+
+    /* ─── LOADING TEXT PROGRESS ─── */
+    #loading-pct { font-weight: 700; color: var(--primary); }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="logo">✦ TƯ VẤN THIẾT KẾ NỘI THẤT</div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <div class="container">
+
+    <!-- ========= BƯỚC 1: THÔNG TIN KHÁCH HÀNG ========= -->
+    <details class="accordion-step" id="step-1" open>
+      <summary class="accordion-summary">
+        <span class="step-num">1</span>
+        <span class="step-title">Thông tin của bạn</span>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <div class="accordion-body">
+        <p class="step-desc"></p>
+
+        <div class="field-group">
+          <label>Chủ đầu tư / Đại diện<span class="required">*</span></label>
+          <input type="text" id="f-ten" placeholder="Nguyễn Văn A" autocomplete="name" />
+          <div class="field-error" id="err-ten">Vui lòng nhập họ và tên.</div>
+        </div>
+
+        <div class="field-row">
+          <div class="field-group">
+            <label>Số điện thoại <span class="required">*</span></label>
+            <input type="tel" id="f-sdt" placeholder="0901 234 567" autocomplete="tel" />
+            <div class="field-error" id="err-sdt">Vui lòng nhập số điện thoại hợp lệ.</div>
+          </div>
+          <div class="field-group">
+            <label>Email</label>
+            <input type="email" id="f-email" placeholder="email@gmail.com" autocomplete="email" />
+            <div class="field-error" id="err-email">Email không hợp lệ.</div>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label>Địa chỉ thi công <span class="required">*</span></label>
+          <input type="text" id="f-diachi" placeholder="123 Nguyễn Huệ, Quận 1, TP.HCM" autocomplete="street-address" />
+          <div class="field-error" id="err-diachi">Vui lòng nhập địa chỉ thi công.</div>
+        </div>
+
+        <div class="field-row">
+          <div class="field-group">
+            <label>Diện tích (m²) <span class="required">*</span></label>
+            <input type="number" id="f-dientich" placeholder="65" min="1" max="9999" />
+            <div class="field-error" id="err-dientich">Vui lòng nhập diện tích.</div>
+          </div>
+          <div class="field-group">
+            <label>Loại công trình</label>
+            <select id="f-nguon">
+                <option value="">-- Chọn loại --</option>
+                <option value="Nhà phố">Nhà phố</option>
+                <option value="Chung cư">Chung cư</option>
+                <option value="Biệt thự">Biệt thự</option>
+                <option value="Nhà hàng">Nhà hàng</option>
+                <option value="Văn phòng">Văn phòng</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label>Tên dự án</label>
+            <input type="text" id="f-ten-du-an" placeholder="Ví dụ: Biệt thự gia đình Nguyễn" />
+          </div>
+
+          <div class="field-group">
+            <label>Chủ đầu tư / Đại diện</label>
+            <input type="text" id="f-chu-dau-tu" placeholder="Họ tên hoặc tên công ty" />
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- ========= BƯỚC 2: CHỌN PHÒNG ========= -->
+    <details class="accordion-step" id="step-2">
+      <summary class="accordion-summary">
+        <span class="step-num">2</span>
+        <span class="step-title">Chọn phòng muốn thiết kế</span>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <div class="accordion-body">
+        <p class="step-desc">Chọn tất cả các phòng bạn muốn thiết kế nội thất.</p>
+        <div class="room-check-grid" id="grid-rooms">
+          <!-- injected by JS -->
+        </div>
+        <div class="field-error" id="err-rooms" style="margin-top:4px;">Vui lòng chọn ít nhất một phòng.</div>
+      </div>
+    </details>
+
+    <!-- ========= BƯỚC 3: CHI TIẾT TỪNG PHÒNG ========= -->
+    <details class="accordion-step" id="step-3">
+      <summary class="accordion-summary">
+        <span class="step-num">3</span>
+        <span class="step-title">Chi tiết từng phòng</span>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <div class="accordion-body">
+        <p class="step-desc">Điền chi tiết yêu cầu cho từng phòng đã chọn ở bước 2.</p>
+        <p class="step3-empty" id="step3-empty">← Hãy chọn ít nhất một phòng ở Bước 2 để tiếp tục.</p>
+        <div id="room-details-container"></div>
+        <div class="field-error" id="err-step3" style="margin-top:4px;"></div>
+      </div>
+    </details>
+
+    <!-- ========= BƯỚC 4: NGÂN SÁCH & THỜI GIAN ========= -->
+    <details class="accordion-step" id="step-4">
+      <summary class="accordion-summary">
+        <span class="step-num">4</span>
+        <span class="step-title">Ngân sách &amp; Thời gian</span>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <div class="accordion-body">
+        <p class="step-desc">Thông tin này giúp chúng tôi đề xuất giải pháp phù hợp nhất.</p>
+
+        <div class="radio-group" id="rg-ngansach">
+          <div class="radio-group-title">Ngân sách dự kiến <span class="required" style="color:var(--primary)">*</span></div>
+          <div class="radio-options" id="ro-ngansach">
+            <!-- injected by JS -->
+          </div>
+          <div class="field-error" id="err-ngansach">Vui lòng chọn ngân sách dự kiến.</div>
+        </div>
+
+        <hr class="section-divider" />
+
+        <div class="radio-group" id="rg-thoigian">
+          <div class="radio-group-title">Thời gian muốn thi công <span class="required" style="color:var(--primary)">*</span></div>
+          <div class="radio-options" id="ro-thoigian">
+            <!-- injected by JS -->
+          </div>
+          <div class="field-error" id="err-thoigian">Vui lòng chọn thời gian thi công.</div>
+        </div>
+
+        <hr class="section-divider" />
+
+        <div class="field-group">
+          <label>Yêu cầu đặc biệt</label>
+          <textarea id="f-yeucau" placeholder="Nhà có trẻ nhỏ, thú cưng, yêu cầu đặc biệt về màu sắc..."></textarea>
+        </div>
+      </div>
+    </details>
+
+    <!-- SUBMIT -->
+    <div class="submit-wrap">
+      <button class="btn btn-primary btn-submit" onclick="handleSubmit()">Gửi yêu cầu tư vấn ✓</button>
+      <div class="global-error" id="global-error-msg"></div>
+    </div>
+
+    <!-- Submit error -->
+    <div class="submit-error-box" id="submit-error-box">
+      <p id="submit-error-msg">Có lỗi xảy ra khi gửi thông tin. Vui lòng thử lại.</p>
+      <button class="btn-retry" onclick="retrySubmit()">Thử lại</button>
+    </div>
+
+    <!-- ========= STEP 6: KẾT QUẢ ========= -->
+    <div id="result-page">
+      <div class="result-hero">
+        <div class="result-icon">🎉</div>
+        <div class="result-title" id="res-title">Cảm ơn bạn!</div>
+        <div class="result-subtitle" id="res-subtitle">Chúng tôi đã nhận được yêu cầu tư vấn của bạn.</div>
+        <div class="result-style-badge" id="res-style-badge"></div>
+      </div>
+
+      <div class="result-summary">
+        <div class="result-summary-title">📋 Tóm tắt lựa chọn của bạn</div>
+        <div id="res-summary-rows"></div>
+      </div>
+
+      <div class="result-notice">
+        <div class="result-notice-icon">✅</div>
+        <p>Chúng tôi sẽ liên hệ với bạn trong vòng <strong>24 giờ</strong> để tư vấn chi tiết. Hãy để ý điện thoại nhé!</p>
+      </div>
+
+      <button class="btn-share" onclick="shareResult()">📤 Chia sẻ cho bạn bè</button>
+      <button class="btn-restart" onclick="restartForm()">↩ Điền lại từ đầu</button>
+    </div>
+
+  </div><!-- /container -->
+
+  <!-- LOADING OVERLAY -->
+  <div class="loading-overlay" id="loading-overlay">
+    <div class="spinner"></div>
+    <div class="loading-text">Đang gửi thông tin...</div>
+  </div>
+
+  <script>
+    /* ─────────────────────────────────────────────
+       CONFIGURATION
+    ───────────────────────────────────────────── */
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyassBznSA4IyNj7CxuEa3llkBCwDkttD5b8wu53v047VrpWkjQD6TiPu2ZNq4O5BlK/exec";
+
+    /* ─────────────────────────────────────────────
+       DATA
+    ───────────────────────────────────────────── */
+    const ROOMS = [
+      { id: "phong-khach",      name: "Phòng khách",          icon: "🛋️" },
+      { id: "phong-ngu-master", name: "Phòng ngủ master",      icon: "🛏️" },
+      { id: "phong-ngu-phu",   name: "Phòng ngủ phụ",         icon: "🛏️" },
+      { id: "bep-ban-an",      name: "Phòng bếp + bàn ăn",    icon: "🍳" },
+      { id: "phong-lam-viec",  name: "Phòng làm việc",         icon: "💼" },
+      { id: "phong-tam",       name: "Phòng tắm",              icon: "🛁" },
+      { id: "ban-cong",        name: "Ban công / sân vườn",    icon: "🌿" },
+      { id: "hanh-lang",       name: "Hành lang / sảnh",       icon: "🚪" }
+    ];
+
+    const PHONG_CACH = [
+      {
+        id: "scandinavian",
+        name: "Scandinavian",
+        desc: "Tối giản, gỗ sáng, tone trắng kem",
+        img: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=480&h=360&fit=crop&auto=format"
+      },
+      {
+        id: "japandi",
+        name: "Japandi",
+        desc: "Nhẹ nhàng, thiên nhiên, tĩnh lặng",
+        img: "https://images.unsplash.com/photo-1617806118233-18e1de247200?w=480&h=360&fit=crop&auto=format"
+      },
+      {
+        id: "modern-luxury",
+        name: "Modern Luxury",
+        desc: "Sang trọng, vàng đồng, nhung tối",
+        img: "https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=480&h=360&fit=crop&auto=format"
+      },
+      {
+        id: "industrial",
+        name: "Industrial",
+        desc: "Thô mộc, kim loại, bê tông",
+        img: "https://images.unsplash.com/photo-1564540574859-0dfb63985953?w=480&h=360&fit=crop&auto=format"
+      },
+      {
+        id: "tropical",
+        name: "Tropical",
+        desc: "Nhiệt đới, mây tre, xanh lá",
+        img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=480&h=360&fit=crop&auto=format"
+      },
+      {
+        id: "classic",
+        name: "Classic",
+        desc: "Cổ điển, đối xứng, chạm khắc",
+        img: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=480&h=360&fit=crop&auto=format"
+      }
+    ];
+
+    const MAU_SAC = [
+      { id: "trang-kem",  name: "Trắng kem",  color: "#F5F0E8" },
+      { id: "xam-nhat",   name: "Xám nhạt",   color: "#C8C8C8" },
+      { id: "nau-go",     name: "Nâu gỗ",     color: "#8B5E3C" },
+      { id: "xanh-reu",   name: "Xanh rêu",   color: "#6B7C5C" },
+      { id: "xanh-navy",  name: "Xanh navy",  color: "#1B2F5B" },
+      { id: "den-trang",  name: "Đen trắng",  color: "#1A1A1A" },
+      { id: "hong-nude",  name: "Hồng nude",  color: "#D4A5A5" },
+      { id: "tuy-chinh",  name: "Tùy chỉnh",  color: null }
+    ];
+
+    const VAT_LIEU_OPTIONS = ["Gỗ tự nhiên", "Gỗ công nghiệp", "Da thật", "Vải nhung", "Kim loại", "Mây tre"];
+    const UU_TIEN_OPTIONS  = ["Quan trọng nhất", "Quan trọng", "Bình thường"];
+    const NGAN_SACH_OPTIONS = ["Dưới 50 triệu", "50 — 150 triệu", "150 — 300 triệu", "Trên 300 triệu", "Chưa xác định"];
+    const THOI_GIAN_OPTIONS = ["Trong 1 tháng tới", "1 — 3 tháng tới", "3 — 6 tháng tới", "Chưa có kế hoạch cụ thể"];
+
+    const MAX_PHOTOS_PER_ROOM = 5;
+    const MAX_PHOTO_MB        = 5;
+    const MAX_TOTAL_MB        = 20;
+
+    /* ─────────────────────────────────────────────
+       STATE
+    ───────────────────────────────────────────── */
+    const state = {
+      ho_ten: "", so_dien_thoai: "", email: "", dia_chi: "", dien_tich: "", nguon_khach: "",
+      ten_du_an: "", chu_dau_tu: "", loai_cong_trinh: "", dt_dat: "",
+      selected_rooms: [],
+      room_details: {},
+      ngan_sach: "", thoi_gian_thi_cong: "", yeu_cau_dac_biet: ""
+    };
+
+    function ensureRoomState(roomId) {
+      if (!state.room_details[roomId])
+        state.room_details[roomId] = { phong_cach: "", mau_sac: [], vat_lieu: [], uu_tien: "", ghi_chu: "", photos: [] };
+    }
+
+    /* ─────────────────────────────────────────────
+       RENDER: ROOM GRID (Step 2)
+    ───────────────────────────────────────────── */
+    function renderRooms() {
+      const container = document.getElementById("grid-rooms");
+      container.innerHTML = "";
+      ROOMS.forEach(room => {
+        const el = document.createElement("div");
+        el.className = "room-check-item";
+        el.dataset.id = room.id;
+        el.innerHTML = `<span class="room-icon">${room.icon}</span><span class="room-label">${room.name}</span>`;
+        el.addEventListener("click", () => {
+          const checked = el.classList.toggle("checked");
+          if (checked) { if (!state.selected_rooms.includes(room.id)) state.selected_rooms.push(room.id); }
+          else          { state.selected_rooms = state.selected_rooms.filter(id => id !== room.id); }
+          toggleRoom(room.id, checked);
+          showErr("err-rooms", false);
+        });
+        container.appendChild(el);
+      });
+    }
+
+    /* ─────────────────────────────────────────────
+       TOGGLE ROOM PANEL (Step 3)
+    ───────────────────────────────────────────── */
+    function toggleRoom(roomId, checked) {
+      const container = document.getElementById("room-details-container");
+      const empty     = document.getElementById("step3-empty");
+      if (checked) {
+        ensureRoomState(roomId);
+        const room  = ROOMS.find(r => r.id === roomId);
+        const panel = buildRoomPanel(room);
+        const order = ROOMS.map(r => r.id);
+        let inserted = false;
+        container.querySelectorAll(".room-panel[data-room-id]").forEach(sib => {
+          if (!inserted && order.indexOf(sib.dataset.roomId) > order.indexOf(roomId)) {
+            container.insertBefore(panel, sib); inserted = true;
+          }
+        });
+        if (!inserted) container.appendChild(panel);
+      } else {
+        const existing = container.querySelector(`.room-panel[data-room-id="${roomId}"]`);
+        if (existing) existing.remove();
+        delete state.room_details[roomId];
+      }
+      empty.style.display = state.selected_rooms.length === 0 ? "block" : "none";
+    }
+
+    /* ─────────────────────────────────────────────
+       BUILD ROOM PANEL
+    ───────────────────────────────────────────── */
+    function buildRoomPanel(room) {
+      const panel = document.createElement("details");
+      panel.className = "room-panel";
+      panel.open = true;
+      panel.dataset.roomId = room.id;
+      panel.innerHTML = `
+        <summary class="room-panel-summary">
+          <span class="rp-icon">${room.icon}</span>
+          <span>${room.name}</span>
+          <svg class="rp-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="room-panel-body">
+          <div class="rp-section-title">A. Phong cách thiết kế <span style="color:var(--error)">*</span></div>
+          <p class="selection-hint" style="margin-bottom:10px;">Chọn 1 phong cách</p>
+          <div class="card-grid" id="style-${room.id}"></div>
+          <div class="field-error" id="err-style-${room.id}">Vui lòng chọn phong cách.</div>
+
+          <div class="rp-section-title">B. Bảng màu chủ đạo <span style="font-weight:400;color:var(--text-muted)">(chọn 1–2)</span></div>
+          <div class="swatch-grid" id="swatches-${room.id}"></div>
+          <div class="field-error" id="err-swatch-${room.id}"></div>
+
+          <div class="rp-section-title">C. Vật liệu chính</div>
+          <div class="checkbox-grid" id="mats-${room.id}" style="margin-bottom:4px;"></div>
+
+          <div class="rp-section-title">D. Mức độ ưu tiên <span style="color:var(--error)">*</span></div>
+          <div class="radio-options" id="prio-${room.id}" style="margin-bottom:4px;"></div>
+          <div class="field-error" id="err-prio-${room.id}">Vui lòng chọn mức độ ưu tiên.</div>
+
+          <div class="rp-section-title">E. Ghi chú riêng</div>
+          <div class="field-group" style="margin-bottom:4px;">
+            <textarea id="note-${room.id}" placeholder="Ví dụ: cần tủ quần áo lớn, phòng có cửa sổ hướng Đông..." style="min-height:80px;"></textarea>
+          </div>
+
+          <div class="rp-section-title">F. Ảnh tham khảo <span style="font-weight:400;color:var(--text-muted)">(không bắt buộc)</span></div>
+          <div class="photo-drop-area" id="drop-${room.id}">
+            <div class="photo-drop-hint">📎 Nhấn để tải ảnh lên<br><small>JPG · PNG · WEBP &nbsp;·&nbsp; Tối đa 5 ảnh &nbsp;·&nbsp; Mỗi ảnh ≤ 5MB</small></div>
+            <input type="file" id="file-${room.id}" accept="image/jpeg,image/png,image/webp" multiple />
+          </div>
+          <div class="photo-size-error" id="err-photo-${room.id}"></div>
+          <div class="photo-preview-grid" id="preview-${room.id}"></div>
+        </div>`;
+      setTimeout(() => {
+        renderRoomStyleCards(room.id);
+        renderSwatches(room.id);
+        renderRoomMaterials(room.id);
+        renderRoomPriority(room.id);
+        initPhotoUpload(room.id);
+      }, 0);
+      return panel;
+    }
+
+    /* ─────────────────────────────────────────────
+       RENDER: STYLE CARDS (per room, single select)
+    ───────────────────────────────────────────── */
+    function renderRoomStyleCards(roomId) {
+      const container = document.getElementById("style-" + roomId);
+      if (!container) return;
+      const d = state.room_details[roomId];
+      container.innerHTML = "";
+      PHONG_CACH.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "selection-card" + (d.phong_cach === item.name ? " selected" : "");
+        card.innerHTML = `
+          <div class="card-img-wrap">
+            <img src="${item.img}" alt="${item.name}" loading="lazy" />
+            <div class="card-check"><svg viewBox="0 0 12 10"><polyline points="1,5 4,9 11,1"/></svg></div>
+          </div>
+          <div class="card-body">
+            <div class="card-title">${item.name}</div>
+            <div class="card-desc">${item.desc}</div>
+          </div>`;
+        card.addEventListener("click", () => {
+          d.phong_cach = item.name;
+          container.querySelectorAll(".selection-card").forEach(c => c.classList.remove("selected"));
+          card.classList.add("selected");
+          showErr("err-style-" + roomId, false);
+        });
+        container.appendChild(card);
+      });
+    }
+
+    /* ─────────────────────────────────────────────
+       RENDER: COLOR SWATCHES (per room, max 2)
+    ───────────────────────────────────────────── */
+    function renderSwatches(roomId) {
+      const container = document.getElementById("swatches-" + roomId);
+      if (!container) return;
+      const d = state.room_details[roomId];
+      container.innerHTML = "";
+      MAU_SAC.forEach(sw => {
+        const item = document.createElement("div");
+        item.className = "swatch-item" + (d.mau_sac.includes(sw.id) ? " selected" : "");
+        if (sw.color === null) {
+          item.innerHTML = `
+            <div class="swatch-circle" style="background:conic-gradient(#ff6b6b,#ffd93d,#6bcb77,#4d96ff,#ff6b6b);position:relative;">
+              <input type="color" style="opacity:0;position:absolute;inset:0;width:100%;height:100%;cursor:pointer;" id="cp-${roomId}" />
+            </div>
+            <span class="swatch-label">${sw.name}</span>`;
+          const cp = item.querySelector("input[type=color]");
+          cp.addEventListener("input", () => { item.querySelector(".swatch-circle").style.background = cp.value; });
+          cp.addEventListener("change", () => {
+            if (!d.mau_sac.includes("tuy-chinh")) {
+              if (d.mau_sac.length < 2) { d.mau_sac.push("tuy-chinh"); item.classList.add("selected"); }
+            }
+            d.custom_color = cp.value;
+          });
+        } else {
+          item.innerHTML = `<div class="swatch-circle" style="background:${sw.color};"></div><span class="swatch-label">${sw.name}</span>`;
+          item.addEventListener("click", () => {
+            const idx = d.mau_sac.indexOf(sw.id);
+            const errEl = document.getElementById("err-swatch-" + roomId);
+            if (idx === -1) {
+              if (d.mau_sac.length >= 2) { errEl.textContent = "Chỉ chọn tối đa 2 màu."; errEl.classList.add("visible"); return; }
+              d.mau_sac.push(sw.id); item.classList.add("selected");
+            } else { d.mau_sac.splice(idx, 1); item.classList.remove("selected"); }
+            errEl.classList.remove("visible");
+          });
+        }
+        container.appendChild(item);
+      });
+    }
+
+    /* ─────────────────────────────────────────────
+       RENDER: MATERIALS (per room)
+    ───────────────────────────────────────────── */
+    function renderRoomMaterials(roomId) {
+      const container = document.getElementById("mats-" + roomId);
+      if (!container) return;
+      const d = state.room_details[roomId];
+      container.innerHTML = "";
+      VAT_LIEU_OPTIONS.forEach(vl => {
+        const item = document.createElement("div");
+        item.className = "checkbox-item" + (d.vat_lieu.includes(vl) ? " checked" : "");
+        item.innerHTML = `<div class="checkbox-box"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,7 9,1"/></svg></div><span class="checkbox-label">${vl}</span>`;
+        item.addEventListener("click", () => {
+          const idx = d.vat_lieu.indexOf(vl);
+          if (idx === -1) { d.vat_lieu.push(vl); item.classList.add("checked"); }
+          else            { d.vat_lieu.splice(idx, 1); item.classList.remove("checked"); }
+        });
+        container.appendChild(item);
+      });
+    }
+
+    /* ─────────────────────────────────────────────
+       RENDER: PRIORITY (per room)
+    ───────────────────────────────────────────── */
+    function renderRoomPriority(roomId) {
+      const container = document.getElementById("prio-" + roomId);
+      if (!container) return;
+      const d = state.room_details[roomId];
+      container.innerHTML = "";
+      UU_TIEN_OPTIONS.forEach(opt => {
+        const item = document.createElement("div");
+        item.className = "radio-item" + (d.uu_tien === opt ? " selected" : "");
+        item.innerHTML = `<div class="radio-dot"></div><span class="radio-text">${opt}</span>`;
+        item.addEventListener("click", () => {
+          d.uu_tien = opt;
+          container.querySelectorAll(".radio-item").forEach(el => el.classList.remove("selected"));
+          item.classList.add("selected");
+          showErr("err-prio-" + roomId, false);
+        });
+        container.appendChild(item);
+      });
+    }
+
+    /* ─────────────────────────────────────────────
+       PHOTO UPLOAD (per room)
+    ───────────────────────────────────────────── */
+    function initPhotoUpload(roomId) {
+      const dropArea  = document.getElementById("drop-"  + roomId);
+      const fileInput = document.getElementById("file-"  + roomId);
+      if (!dropArea || !fileInput) return;
+      dropArea.addEventListener("click", () => fileInput.click());
+      fileInput.addEventListener("change", () => { handlePhotoFiles(roomId, fileInput.files); fileInput.value = ""; });
+    }
+
+    function getTotalPhotosMB() {
+      let total = 0;
+      state.selected_rooms.forEach(rid => { const d = state.room_details[rid]; if (d) d.photos.forEach(p => total += p.size); });
+      return total / (1024 * 1024);
+    }
+
+    function handlePhotoFiles(roomId, files) {
+      const d     = state.room_details[roomId];
+      const errEl = document.getElementById("err-photo-" + roomId);
+      errEl.classList.remove("visible");
+      for (const file of files) {
+        if (d.photos.length >= MAX_PHOTOS_PER_ROOM) {
+          errEl.textContent = `Tối đa ${MAX_PHOTOS_PER_ROOM} ảnh/phòng.`; errEl.classList.add("visible"); break;
+        }
+        if (file.size > MAX_PHOTO_MB * 1024 * 1024) {
+          errEl.textContent = `"${file.name}" vượt quá ${MAX_PHOTO_MB}MB.`; errEl.classList.add("visible"); continue;
+        }
+        if (getTotalPhotosMB() + file.size / (1024 * 1024) > MAX_TOTAL_MB) {
+          errEl.textContent = `Tổng ảnh vượt quá ${MAX_TOTAL_MB}MB.`; errEl.classList.add("visible"); break;
+        }
+        d.photos.push({ name: file.name, file, size: file.size, preview: URL.createObjectURL(file) });
+      }
+      renderPhotoPreviews(roomId);
+    }
+
+    function renderPhotoPreviews(roomId) {
+      const grid = document.getElementById("preview-" + roomId);
+      if (!grid) return;
+      grid.innerHTML = "";
+      state.room_details[roomId].photos.forEach((p, idx) => {
+        const thumb = document.createElement("div");
+        thumb.className = "photo-thumb";
+        thumb.innerHTML = `<img src="${p.preview}" alt="${p.name}" /><button class="photo-thumb-remove" title="Xóa">✕</button>`;
+        thumb.querySelector(".photo-thumb-remove").addEventListener("click", e => { e.stopPropagation(); removePhoto(roomId, idx); });
+        grid.appendChild(thumb);
+      });
+    }
+
+    function removePhoto(roomId, idx) {
+      const d = state.room_details[roomId];
+      URL.revokeObjectURL(d.photos[idx].preview);
+      d.photos.splice(idx, 1);
+      renderPhotoPreviews(roomId);
+    }
+
+    /* ─────────────────────────────────────────────
+       RENDER: RADIO GROUPS (Step 4)
+    ───────────────────────────────────────────── */
+    function renderRadios(containerId, options, stateKey) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = "";
+      options.forEach(opt => {
+        const item = document.createElement("div");
+        item.className = "radio-item" + (state[stateKey] === opt ? " selected" : "");
+        item.innerHTML = `<div class="radio-dot"></div><span class="radio-text">${opt}</span>`;
+        item.addEventListener("click", () => {
+          state[stateKey] = opt;
+          container.querySelectorAll(".radio-item").forEach(el => el.classList.remove("selected"));
+          item.classList.add("selected");
+        });
+        container.appendChild(item);
+      });
+    }
+
+    /* ─────────────────────────────────────────────
+       VALIDATION
+    ───────────────────────────────────────────── */
+    function showErr(id, show) { const el = document.getElementById(id); if (el) el.classList.toggle("visible", show); }
+    function markField(id, error) { const el = document.getElementById(id); if (el) el.classList.toggle("error", error); }
+
+    function validateStep1() {
+      const ten = document.getElementById("f-ten").value.trim();
+      const sdt = document.getElementById("f-sdt").value.trim();
+      const email = document.getElementById("f-email").value.trim();
+      const diachi = document.getElementById("f-diachi").value.trim();
+      const dientich = document.getElementById("f-dientich").value.trim();
+      let ok = true;
+      const noTen = !ten; markField("f-ten", noTen); showErr("err-ten", noTen); if (noTen) ok = false;
+      const noSdt = !sdt || !/^(0|\+84)[0-9]{8,10}$/.test(sdt.replace(/\s/g, ""));
+      markField("f-sdt", noSdt); showErr("err-sdt", noSdt); if (noSdt) ok = false;
+      if (email) { const bad = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); markField("f-email", bad); showErr("err-email", bad); if (bad) ok = false; }
+      else { markField("f-email", false); showErr("err-email", false); }
+      const noDiachi = !diachi; markField("f-diachi", noDiachi); showErr("err-diachi", noDiachi); if (noDiachi) ok = false;
+      const noDientich = !dientich || isNaN(dientich) || +dientich <= 0;
+      markField("f-dientich", noDientich); showErr("err-dientich", noDientich); if (noDientich) ok = false;
+      state.ho_ten = ten; state.so_dien_thoai = sdt; state.email = email;
+      state.dia_chi = diachi; state.dien_tich = dientich;
+      state.nguon_khach = document.getElementById("f-nguon").value;
+      state.ten_du_an = document.getElementById("f-ten-du-an").value.trim();
+      state.chu_dau_tu = document.getElementById("f-chu-dau-tu").value.trim();
+      state.loai_cong_trinh = document.getElementById("f-loai-ct").value;
+      state.dt_dat = document.getElementById("f-dt-dat").value.trim();
+      return ok;
+    }
+
+    function validateStep2() {
+      const ok = state.selected_rooms.length > 0;
+      showErr("err-rooms", !ok);
+      return ok;
+    }
+
+    function validateStep3() {
+      if (state.selected_rooms.length === 0) return true;
+      let ok = true;
+      state.selected_rooms.forEach(roomId => {
+        const d = state.room_details[roomId];
+        if (!d) return;
+        const noteEl = document.getElementById("note-" + roomId);
+        if (noteEl) d.ghi_chu = noteEl.value.trim();
+        if (!d.phong_cach) { showErr("err-style-" + roomId, true); ok = false; }
+        if (!d.uu_tien)    { showErr("err-prio-"  + roomId, true); ok = false; }
+      });
+      const errEl = document.getElementById("err-step3");
+      if (!ok) { errEl.textContent = "Vui lòng hoàn thiện thông tin cho tất cả các phòng."; errEl.classList.add("visible"); }
+      else errEl.classList.remove("visible");
+      return ok;
+    }
+
+    function validateStep4() {
+      let ok = true;
+      if (!state.ngan_sach)          { showErr("err-ngansach", true);  ok = false; } else showErr("err-ngansach", false);
+      if (!state.thoi_gian_thi_cong) { showErr("err-thoigian", true);  ok = false; } else showErr("err-thoigian", false);
+      state.yeu_cau_dac_biet = document.getElementById("f-yeucau").value.trim();
+      return ok;
+    }
+
+    /* ─────────────────────────────────────────────
+       VALIDATE ALL & HANDLE SUBMIT
+    ───────────────────────────────────────────── */
+    function validateAll() {
+      const results = [validateStep1(), validateStep2(), validateStep3(), validateStep4()];
+      const allOk = results.every(Boolean);
+      if (!allOk) {
+        const firstErr = document.querySelector(".field-error.visible");
+        if (firstErr) {
+          const panel = firstErr.closest("details");
+          if (panel && !panel.open) panel.open = true;
+          setTimeout(() => firstErr.scrollIntoView({ behavior: "smooth", block: "center" }), 80);
+        }
+      }
+      return allOk;
+    }
+
+    function handleSubmit() {
+      const errEl = document.getElementById("global-error-msg");
+      errEl.classList.remove("visible");
+      if (validateAll()) { submitForm(); }
+      else { errEl.textContent = "Vui lòng kiểm tra lại các thông tin còn thiếu bên trên."; errEl.classList.add("visible"); }
+    }
+
+    /* ─────────────────────────────────────────────
+       SUBMIT
+    ───────────────────────────────────────────── */
+    function setLoading(on) { document.getElementById("loading-overlay").classList.toggle("active", on); }
+    function setLoadingMsg(html) { document.querySelector(".loading-text").innerHTML = html; }
+
+    function compressImage(file, maxWidth, quality) {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        const url = URL.createObjectURL(file);
+        img.onload = () => {
+          let w = img.width, h = img.height;
+          if (w > maxWidth) { h = Math.round(h * maxWidth / w); w = maxWidth; }
+          const canvas = document.createElement("canvas");
+          canvas.width = w; canvas.height = h;
+          canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+          URL.revokeObjectURL(url);
+          const dataUrl = canvas.toDataURL("image/jpeg", quality);
+          resolve(dataUrl.split(",")[1]);
+        };
+        img.onerror = () => { URL.revokeObjectURL(url); reject(new Error("img load failed")); };
+        img.src = url;
+      });
+    }
+
+    async function processImages() {
+      const all = [];
+      let total = 0;
+      state.selected_rooms.forEach(rid => { const d = state.room_details[rid]; if (d) total += d.photos.length; });
+      if (total === 0) return all;
+      let done = 0;
+      for (const roomId of state.selected_rooms) {
+        const d    = state.room_details[roomId];
+        const room = ROOMS.find(r => r.id === roomId);
+        if (!d || !d.photos.length) continue;
+        for (const p of d.photos) {
+          const data = await compressImage(p.file, 1200, 0.75);
+          all.push({ room: room.name, filename: p.name.replace(/\.[^.]+$/, ".jpg"), data, mimeType: "image/jpeg" });
+          done++;
+          setLoadingMsg(`Đang tải ảnh lên... <strong>${Math.round(done / total * 100)}%</strong>`);
+        }
+      }
+      return all;
+    }
+
+    async function submitForm() {
+      document.getElementById("submit-error-box").classList.remove("visible");
+      setLoading(true);
+      setLoadingMsg("Đang xử lý...");
+
+      console.log("[SUBMIT] Bắt đầu xử lý ảnh...");
+      let images = [];
+      try {
+        images = await processImages();
+        console.log("[SUBMIT] Xử lý ảnh xong:", images.length, "ảnh");
+        images.forEach((img, i) => console.log(`  Ảnh ${i+1}: ${img.filename} | base64 size: ${(img.data.length / 1024).toFixed(1)} KB`));
+      } catch (imgErr) {
+        console.error("[SUBMIT] Lỗi xử lý ảnh:", imgErr);
+      }
+      setLoadingMsg("Đang gửi thông tin...");
+
+      const roomsPayload = state.selected_rooms.map(roomId => {
+        const d    = state.room_details[roomId];
+        const room = ROOMS.find(r => r.id === roomId);
+        return {
+          room: room.name,
+          phong_cach: d.phong_cach,
+          mau_sac: d.mau_sac.map(id => { const s = MAU_SAC.find(m => m.id === id); return s ? s.name : id; }),
+          vat_lieu: d.vat_lieu,
+          uu_tien: d.uu_tien,
+          ghi_chu: d.ghi_chu
+        };
+      });
+
+      const payload = {
+        timestamp: new Date().toISOString(),
+        ho_ten: state.ho_ten, so_dien_thoai: state.so_dien_thoai,
+        email: state.email, dia_chi: state.dia_chi, dien_tich: state.dien_tich,
+        nguon_khach: state.nguon_khach,
+        rooms: roomsPayload,
+        ngan_sach: state.ngan_sach,
+        thoi_gian_thi_cong: state.thoi_gian_thi_cong,
+        yeu_cau_dac_biet: state.yeu_cau_dac_biet,
+        images
+      };
+
+      const bodyStr = JSON.stringify(payload);
+      console.log("[SUBMIT] Payload tổng:", (bodyStr.length / 1024).toFixed(1), "KB |", images.length, "ảnh");
+      console.log("[SUBMIT] Gửi đến:", APPS_SCRIPT_URL);
+
+      try {
+        if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === "PASTE_YOUR_APPS_SCRIPT_URL_HERE") {
+          await new Promise(r => setTimeout(r, 800));
+          showResult(); return;
+        }
+        const res = await fetch(APPS_SCRIPT_URL, {
+          method: "POST", headers: { "Content-Type": "text/plain" },
+          body: bodyStr, mode: "no-cors"
+        });
+        console.log("[SUBMIT] fetch hoàn thành. Response type:", res.type, "| status:", res.status);
+        showResult();
+      } catch (err) {
+        console.error("[SUBMIT] fetch lỗi:", err);
+        setLoading(false);
+        document.getElementById("submit-error-msg").textContent = "Có lỗi xảy ra khi gửi thông tin. Vui lòng kiểm tra kết nối và thử lại.";
+        document.getElementById("submit-error-box").classList.add("visible");
+      }
+    }
+
+    function retrySubmit() { submitForm(); }
+
+    /* ─────────────────────────────────────────────
+       RESULT PAGE
+    ───────────────────────────────────────────── */
+    function showResult() {
+      setLoading(false);
+      document.querySelectorAll(".accordion-step").forEach(s => s.style.display = "none");
+      const sw = document.querySelector(".submit-wrap"); if (sw) sw.style.display = "none";
+      document.getElementById("submit-error-box").classList.remove("visible");
+
+      const firstName = state.ho_ten.split(" ").pop();
+      const rooms = state.selected_rooms.map(id => ROOMS.find(r => r.id === id)?.name).filter(Boolean);
+
+      document.getElementById("res-title").textContent     = `Cảm ơn bạn, ${firstName}! 🎉`;
+      document.getElementById("res-subtitle").textContent  = `Chúng tôi đã nhận yêu cầu tư vấn cho ${rooms.length} phòng.`;
+      document.getElementById("res-style-badge").textContent = "✦ " + rooms.join(" · ");
+
+      const rows = [
+        ["Họ và tên",         state.ho_ten],
+        ["Điện thoại",        state.so_dien_thoai],
+        ["Email",             state.email || "Chưa cung cấp"],
+        ["Địa chỉ thi công",  state.dia_chi],
+        ["Diện tích",         state.dien_tich + " m²"],
+        ["Phòng thiết kế",    rooms.join(", ")],
+        ["Ngân sách",         state.ngan_sach],
+        ["Thời gian thi công",state.thoi_gian_thi_cong],
+        ["Yêu cầu đặc biệt",  state.yeu_cau_dac_biet || "Không có"]
+      ];
+      document.getElementById("res-summary-rows").innerHTML = rows.map(([k, v]) =>
+        `<div class="summary-row"><span class="summary-key">${k}</span><span class="summary-val">${v}</span></div>`
+      ).join("");
+      document.getElementById("result-page").style.display = "block";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    /* ─────────────────────────────────────────────
+       SHARE / RESTART
+    ───────────────────────────────────────────── */
+    async function shareResult() {
+      try {
+        const text = `Mình vừa gửi yêu cầu tư vấn thiết kế nội thất cho ${state.selected_rooms.length} phòng. Bạn thử xem nhé!`;
+        if (navigator.share) await navigator.share({ title: "Tư Vấn Thiết Kế Nội Thất", text, url: window.location.href });
+        else { await navigator.clipboard.writeText(window.location.href); alert("Đã sao chép link!"); }
+      } catch (_) {}
+    }
+
+    function restartForm() { window.location.reload(); }
+
+    /* ─────────────────────────────────────────────
+       INIT
+    ───────────────────────────────────────────── */
+    function init() {
+      renderRooms();
+      renderRadios("ro-ngansach", NGAN_SACH_OPTIONS, "ngan_sach");
+      renderRadios("ro-thoigian", THOI_GIAN_OPTIONS, "thoi_gian_thi_cong");
+    }
+
+    document.addEventListener("DOMContentLoaded", init);
+  </script>
+</body>
+</html>
