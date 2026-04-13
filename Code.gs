@@ -110,9 +110,11 @@ function saveToSheet(data, imageLinks) {
     sheet = ss.insertSheet(SHEET_NAME);
     const headers = [
       "Thời gian", "Họ và tên", "Số điện thoại", "Email",
-      "Địa chỉ thi công", "Diện tích (m²)", "Nguồn khách",
+      "Địa chỉ thi công", "Diện tích (m²)", "Nguồn khách", "Loại công trình",
+      "Tên dự án", "Chủ đầu tư", "DT đất",
       "Phòng thiết kế", "Chi tiết phòng",
-      "Ngân sách", "Thời gian thi công", "Yêu cầu đặc biệt",
+      "Ngân sách", "Ưu tiên phân bổ", "Mức hoàn thiện", "Thời gian thi công", "Các mốc quan trọng",
+      "Khảo sát - Phong cách", "Khảo sát - Hình ảnh", "Khảo sát - Không gian",
       "Link ảnh tham khảo"
     ];
     sheet.appendRow(headers);
@@ -123,8 +125,9 @@ function saveToSheet(data, imageLinks) {
     hdr.setFontSize(11);
     sheet.setFrozenRows(1);
     sheet.setColumnWidths(1, headers.length, 160);
-    sheet.setColumnWidth(9, 300);
-    sheet.setColumnWidth(13, 300);
+    sheet.setColumnWidth(13, 280);
+    sheet.setColumnWidth(14, 360);
+    sheet.setColumnWidth(22, 360);
   }
 
   const ts = data.timestamp
@@ -134,9 +137,12 @@ function saveToSheet(data, imageLinks) {
   const rooms       = Array.isArray(data.rooms) ? data.rooms : [];
   const roomNames   = rooms.map(function(r) { return r.room; }).join(", ");
   const roomDetails = rooms.map(function(r) {
+    const phongCach = Array.isArray(r.phong_cach) ? r.phong_cach.join(", ") : (r.phong_cach || "—");
+    const vatLieu   = Array.isArray(r.vat_lieu) ? r.vat_lieu.join(", ") : (r.vat_lieu || "");
     return r.room + ": " + (r.phong_cach || "—")
       + (r.mau_sac && r.mau_sac.length  ? " | Màu: "      + r.mau_sac.join(", ")  : "")
-      + (r.vat_lieu && r.vat_lieu.length ? " | Vật liệu: " + r.vat_lieu.join(", ") : "")
+      + (phongCach && phongCach !== "—" ? " | Phong cách: " + phongCach : "")
+      + (vatLieu ? " | Vật liệu: " + vatLieu : "")
       + (r.uu_tien   ? " | Ưu tiên: " + r.uu_tien : "")
       + (r.ghi_chu   ? " | Ghi chú: " + r.ghi_chu : "");
   }).join("\n");
@@ -153,11 +159,20 @@ function saveToSheet(data, imageLinks) {
     data.dia_chi           || "",
     data.dien_tich         || "",
     data.nguon_khach       || "",
+    data.loai_cong_trinh   || "",
+    data.ten_du_an         || "",
+    data.chu_dau_tu        || "",
+    data.dt_dat            || "",
     roomNames,
     roomDetails,
     data.ngan_sach         || "",
+    data.uu_tien_phan_bo   || "",
+    data.muc_hoan_thien    || "",
     data.thoi_gian_thi_cong|| "",
-    data.yeu_cau_dac_biet  || "",
+    data.cac_moc_quan_trong|| "",
+    data.khao_sat_phong_cach || "",
+    data.khao_sat_hinh_anh || "",
+    data.khao_sat_khong_gian || "",
     imageLinksStr
   ];
 
@@ -166,8 +181,8 @@ function saveToSheet(data, imageLinks) {
   if (lastRow % 2 === 0) {
     sheet.getRange(lastRow, 1, 1, row.length).setBackground("#fdf8f0");
   }
-  sheet.getRange(lastRow, 9).setWrap(true);
-  sheet.getRange(lastRow, 13).setWrap(true);
+  sheet.getRange(lastRow, 14).setWrap(true);
+  sheet.getRange(lastRow, 22).setWrap(true);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -186,6 +201,8 @@ function sendEmailNotification(data, imageLinks) {
 
   const roomRowsHtml = rooms.map(function(r) {
     const imgs = (imageLinks || []).filter(function(l) { return l.room === r.room; });
+    const phongCach = Array.isArray(r.phong_cach) ? r.phong_cach.join(", ") : (r.phong_cach || "—");
+    const vatLieu   = Array.isArray(r.vat_lieu) ? r.vat_lieu.join(", ") : (r.vat_lieu || "");
     const imgHtml = imgs.length
       ? "<br/><small style='color:#8B6914;'>🖼 Ảnh: " + imgs.map(function(l) {
           return '<a href="' + l.url + '" style="color:#8B6914;">' + l.filename + "</a>";
@@ -197,9 +214,9 @@ function sendEmailNotification(data, imageLinks) {
           <strong style="font-size:14px;color:#1A1A1A;">${r.room}</strong>
           ${imgHtml}
           <table width="100%" cellpadding="0" cellspacing="0" style="margin-top:6px;">
-            ${infoRow("Phong cách", r.phong_cach || "—")}
+            ${infoRow("Phong cách", phongCach || "—")}
             ${r.mau_sac && r.mau_sac.length  ? infoRow("Màu sắc",   r.mau_sac.join(", "))  : ""}
-            ${r.vat_lieu && r.vat_lieu.length ? infoRow("Vật liệu",  r.vat_lieu.join(", ")) : ""}
+            ${vatLieu ? infoRow("Vật liệu", vatLieu) : ""}
             ${r.uu_tien ? infoRow("Ưu tiên",   r.uu_tien) : ""}
             ${r.ghi_chu ? infoRow("Ghi chú",   r.ghi_chu) : ""}
           </table>
@@ -237,6 +254,10 @@ function sendEmailNotification(data, imageLinks) {
           ${infoRow("Địa chỉ thi công", data.dia_chi || "—")}
           ${infoRow("Diện tích", data.dien_tich ? data.dien_tich + " m²" : "—")}
           ${infoRow("Nguồn khách", data.nguon_khach || "—")}
+          ${data.loai_cong_trinh ? infoRow("Loại công trình", data.loai_cong_trinh) : ""}
+          ${data.ten_du_an ? infoRow("Tên dự án", data.ten_du_an) : ""}
+          ${data.chu_dau_tu ? infoRow("Chủ đầu tư", data.chu_dau_tu) : ""}
+          ${data.dt_dat ? infoRow("DT đất", data.dt_dat) : ""}
         </table>
 
         <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;">
@@ -251,16 +272,20 @@ function sendEmailNotification(data, imageLinks) {
             <h2 style="margin:0;font-size:14px;font-weight:700;color:#8B6914;text-transform:uppercase;letter-spacing:0.8px;border-bottom:2px solid #f5f0e8;padding-bottom:8px;">💰 Ngân sách &amp; Thời gian</h2>
           </td></tr>
           ${infoRow("Ngân sách dự kiến", '<strong style="color:#1a6b3c;">' + (data.ngan_sach || "—") + "</strong>")}
+          ${infoRow("Ưu tiên phân bổ", data.uu_tien_phan_bo || "—")}
+          ${infoRow("Mức hoàn thiện", data.muc_hoan_thien || "—")}
           ${infoRow("Thời gian thi công", data.thoi_gian_thi_cong || "—")}
+          ${infoRow("Các mốc quan trọng", data.cac_moc_quan_trong || "—")}
         </table>
 
-        ${data.yeu_cau_dac_biet ? `
         <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;">
           <tr><td style="padding-bottom:10px;">
-            <h2 style="margin:0;font-size:14px;font-weight:700;color:#8B6914;text-transform:uppercase;letter-spacing:0.8px;border-bottom:2px solid #f5f0e8;padding-bottom:8px;">📝 Yêu cầu đặc biệt</h2>
+            <h2 style="margin:0;font-size:14px;font-weight:700;color:#8B6914;text-transform:uppercase;letter-spacing:0.8px;border-bottom:2px solid #f5f0e8;padding-bottom:8px;">📝 Khảo sát thêm</h2>
           </td></tr>
-          <tr><td style="background:#fdf8f0;border-radius:8px;padding:14px 16px;font-size:14px;color:#1A1A1A;line-height:1.6;border-left:3px solid #8B6914;">${data.yeu_cau_dac_biet}</td></tr>
-        </table>` : ""}
+          ${infoRow("Phong cách mong muốn", data.khao_sat_phong_cach || "—")}
+          ${infoRow("Hình ảnh tham khảo", data.khao_sat_hinh_anh || "—")}
+          ${infoRow("Điều không thích", data.khao_sat_khong_gian || "—")}
+        </table>
 
         <table width="100%" cellpadding="0" cellspacing="0">
           <tr><td align="center" style="padding-top:8px;">
@@ -281,7 +306,27 @@ function sendEmailNotification(data, imageLinks) {
 </table>
 </body></html>`;
 
-  MailApp.sendEmail({ to: OWNER_EMAIL, subject: subject, htmlBody: htmlBody });
+  const plainBody = [
+    "YÊU CẦU TƯ VẤN MỚI",
+    "Thời gian: " + ts,
+    "",
+    "THÔNG TIN KHÁCH HÀNG",
+    "- Họ và tên: " + (data.ho_ten || "—"),
+    "- Số điện thoại: " + (data.so_dien_thoai || "—"),
+    "- Email: " + (data.email || "—"),
+    "- Địa chỉ thi công: " + (data.dia_chi || "—"),
+    "- Diện tích: " + (data.dien_tich ? data.dien_tich + " m²" : "—"),
+    "- Nguồn khách: " + (data.nguon_khach || "—"),
+    "",
+    "NGÂN SÁCH & TIẾN ĐỘ",
+    "- Ngân sách: " + (data.ngan_sach || "—"),
+    "- Ưu tiên phân bổ: " + (data.uu_tien_phan_bo || "—"),
+    "- Mức hoàn thiện: " + (data.muc_hoan_thien || "—"),
+    "- Thời gian thi công: " + (data.thoi_gian_thi_cong || "—"),
+    "- Các mốc quan trọng: " + (data.cac_moc_quan_trong || "—")
+  ].join("\n");
+
+  MailApp.sendEmail({ to: OWNER_EMAIL, subject: subject, htmlBody: htmlBody, body: plainBody });
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

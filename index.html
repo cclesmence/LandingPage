@@ -56,9 +56,9 @@
 
     /* ─── CONTAINER ─── */
     .container {
-      max-width: 680px;
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 0 20px;
+      padding: 0 16px;
     }
 
     /* ─── ACCORDION ─── */
@@ -75,7 +75,7 @@
       border-color: rgba(139,105,20,0.4);
     }
     .accordion-summary {
-      padding: 16px 20px;
+      padding: 16px 22px;
       font-size: 15px;
       font-weight: 700;
       cursor: pointer;
@@ -115,7 +115,7 @@
     }
     .accordion-step[open] .accordion-summary .chevron { transform: rotate(180deg); }
     .accordion-body {
-      padding: 0 20px 24px;
+      padding: 0 22px 24px;
       border-top: 1px solid var(--border);
     }
     .step-desc {
@@ -193,7 +193,7 @@
     .field-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 14px;
+      gap: 16px;
     }
     @media (max-width: 480px) {
       .field-row { grid-template-columns: 1fr; }
@@ -203,7 +203,7 @@
     .card-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
+      gap: 16px;
       margin-bottom: 8px;
     }
     @media (min-width: 560px) {
@@ -284,7 +284,7 @@
     .checkbox-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
+      gap: 12px;
       margin-bottom: 8px;
     }
     @media (min-width: 520px) {
@@ -335,7 +335,7 @@
       margin-bottom: 10px;
       color: var(--text);
     }
-    .radio-options { display: flex; flex-direction: column; gap: 8px; }
+    .radio-options { display: flex; flex-direction: column; gap: 10px; }
     .radio-item {
       display: flex;
       align-items: center;
@@ -573,7 +573,23 @@
     .section-divider {
       border: none;
       border-top: 1px solid var(--border);
-      margin: 24px 0;
+      margin: 20px 0;
+    }
+
+    @media (min-width: 900px) {
+      .field-row { gap: 18px; }
+      .card-grid { grid-template-columns: repeat(4, 1fr); }
+      .checkbox-grid { grid-template-columns: repeat(4, 1fr); }
+      .room-check-grid { grid-template-columns: repeat(5, 1fr); }
+      .radio-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    }
+    @media (min-width: 1200px) {
+      .accordion-summary { padding-left: 24px; padding-right: 24px; }
+      .accordion-body { padding-left: 24px; padding-right: 24px; }
+      .card-grid { grid-template-columns: repeat(5, 1fr); }
+      .checkbox-grid { grid-template-columns: repeat(5, 1fr); }
+      .room-check-grid { grid-template-columns: repeat(6, 1fr); }
+      .radio-options { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
     @media (max-width: 360px) {
       .accordion-summary { font-size: 13px; }
@@ -584,7 +600,7 @@
     .room-check-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
+      gap: 12px;
       margin-bottom: 8px;
     }
     @media (min-width: 480px) {
@@ -621,6 +637,91 @@
     .swatch-item:hover .swatch-circle { transform: scale(1.1); }
     .swatch-item.selected .swatch-circle { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(139,105,20,0.22); }
     .swatch-label { font-size: 10px; color: var(--text-muted); text-align: center; max-width: 46px; line-height: 1.2; }
+
+    /* ─── MATERIAL SECTION ─── */
+    .material-cat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .material-cat-card {
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background: var(--white);
+    }
+    .material-cat-card:hover { border-color: rgba(139,105,20,0.4); }
+    .material-cat-card.active { border-color: var(--primary); box-shadow: var(--shadow-card); }
+    .material-cat-card .cat-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+    }
+    .material-cat-card .cat-name {
+      text-align: center;
+      padding: 8px 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .material-type-panel {
+      display: none;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px 16px;
+      margin-bottom: 8px;
+      background: var(--white);
+    }
+    .material-type-panel.visible { display: block; }
+    .material-type-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .material-type-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(78px, 1fr));
+      gap: 10px;
+    }
+    .material-type-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 6px;
+      border: 2px solid transparent;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .material-type-item:hover { border-color: rgba(139,105,20,0.3); }
+    .material-type-item.selected { border-color: var(--primary); background: var(--primary-bg); }
+    .material-type-swatch {
+      width: 62px;
+      height: 62px;
+      border-radius: 6px;
+      border: 1px solid rgba(0,0,0,0.1);
+      flex-shrink: 0;
+      object-fit: cover;
+      display: block;
+    }
+    .material-type-name {
+      font-size: 10px;
+      text-align: center;
+      line-height: 1.3;
+      color: var(--text);
+    }
+    @media (min-width: 900px) {
+      .material-cat-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    @media (min-width: 1200px) {
+      .material-cat-grid { grid-template-columns: repeat(5, 1fr); }
+    }
 
     /* ─── ROOM DETAIL PANELS ─── */
     .room-panel { border: 1.5px solid var(--border); border-radius: 10px; margin-bottom: 12px; overflow: hidden; background: var(--white); }
@@ -677,7 +778,173 @@
     <details class="accordion-step" id="step-1" open>
       <summary class="accordion-summary">
         <span class="step-num">1</span>
-        <span class="step-title">Thông tin của bạn</span>
+        <span class="step-title">Hồ sơ người sử dụng</span>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <div class="accordion-body">
+        <p class="step-desc"></p>
+
+        <div class="field-row">
+          <div class="field-group">
+            <label>Độ tuổi, nghề nghiệp<span class="required">*</span></label>
+            <input type="text" id="f-ten" placeholder="25, Kỹ sư" autocomplete="name" />
+            <div class="field-error" id="err-ten">Vui lòng nhập...</div>
+          </div>
+          <div class="field-group">
+            <label>Email</label>
+            <input type="email" id="f-email" placeholder="email@gmail.com" autocomplete="email" />
+            <div class="field-error" id="err-email">Email không hợp lệ.</div>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label>Thói quen sinh hoạt</label>
+          <div class="checkbox-grid" id="thoi-quen-grid"></div>
+          <input type="text" id="thoi-quen-khac" class="other-input" placeholder="Nhập thói quen khác..." style="display:none;">
+        </div>
+        <div class="field-group">
+          <label>Sở thích</label>
+          <div class="checkbox-grid" id="so-thich-grid"></div>
+          <input type="text" id="so-thich-khac" class="other-input" placeholder="Nhập sở thích khác..." style="display:none;">
+        </div>
+      </div>
+    </details>
+
+    <!-- ========= MỤC TIÊU & MONG MUỐN ========= -->
+    <details class="accordion-step" id="step-muctieu">
+      <summary class="accordion-summary">
+        <span class="step-num">2</span>
+        <span class="step-title">Mục tiêu &amp; mong muốn của khách hàng</span>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <div class="accordion-body">
+        <div class="field-group" style="margin-top: 25px">
+          <label>Lý do xây dựng</label>
+          <div class="radio-options" id="ly-do-radio" style="flex-direction:row;flex-wrap:wrap;"></div>
+        </div>
+        <div class="field-group">
+          <label>Kỳ vọng chính</label>
+          <div class="checkbox-grid" id="ky-vong-grid"></div>
+          <input type="text" id="ky-vong-khac" class="other-input" placeholder="Nhập kỳ vọng khác..." style="display:none;">
+        </div>
+        <div class="field-group">
+          <label>Ưu tiên hàng đầu</label>
+          <div class="radio-options" id="uu-tien-radio" style="flex-direction:row;flex-wrap:wrap;"></div>
+        </div>
+      </div>
+    </details>
+
+    <!-- ========= BƯỚC 2: CHỌN PHÒNG ========= -->
+    <details class="accordion-step" id="step-2">
+      <summary class="accordion-summary">
+        <span class="step-num">3</span>
+        <span class="step-title">Chọn phòng muốn thiết kế</span>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <div class="accordion-body">
+        <p class="step-desc">Chọn tất cả các phòng bạn muốn thiết kế nội thất.</p>
+        <div class="room-check-grid" id="grid-rooms">
+          <!-- injected by JS -->
+        </div>
+        <div class="field-error" id="err-rooms" style="margin-top:4px;">Vui lòng chọn ít nhất một phòng.</div>
+        <p class="step3-empty" id="step3-empty" style="display:none;"></p>
+        <div id="room-details-container" style="margin-top:16px;"></div>
+      </div>
+    </details>
+
+    <!-- ========= BƯỚC 4: PHONG CÁCH & CẢM HỨNG ========= -->
+    <details class="accordion-step" id="step-phongcach">
+      <summary class="accordion-summary">
+        <span class="step-num">4</span>
+        <span class="step-title">Phong cách &amp; cảm hứng thiết kế</span>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <div class="accordion-body">
+        <p class="step-desc">Chọn phong cách kiến trúc bạn yêu thích. Có thể chọn nhiều.</p>
+        <div class="card-grid" id="grid-phongcach"></div>
+      </div>
+    </details>
+
+    <!-- ========= BƯỚC 5: COLOUR COMBO ========= -->
+    <details class="accordion-step" id="step-colour">
+      <summary class="accordion-summary">
+        <span class="step-num">5</span>
+        <span class="step-title">Colour combo</span>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <div class="accordion-body">
+        <p class="step-desc">Chọn bảng màu phối cảnh bạn yêu thích. Có thể chọn nhiều.</p>
+        <div class="card-grid" id="grid-colour"></div>
+      </div>
+    </details>
+
+    <!-- ========= BƯỚC 6: MATERIAL ========= -->
+    <details class="accordion-step" id="step-material">
+      <summary class="accordion-summary">
+        <span class="step-num">6</span>
+        <span class="step-title">Material</span>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <div class="accordion-body">
+        <p class="step-desc">Chọn loại vật liệu và kiểu bề mặt bạn muốn sử dụng.</p>
+        <div id="material-section"></div>
+      </div>
+    </details>
+
+    <!-- ========= BƯỚC 7: KHẢO SÁT THÊM ========= -->
+    <details class="accordion-step" id="step-4">
+      <summary class="accordion-summary">
+        <span class="step-num">7</span>
+        <span class="step-title">Khảo sát thêm</span>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <div class="accordion-body">
+        <p class="step-desc">Bạn có thể chia sẻ thêm để đội ngũ hiểu rõ hơn gu và nhu cầu thực tế.</p>
+
+        <div class="field-group">
+          <label>Tổng ngân sách dự kiến</label>
+          <input id="f-tong-ngansach" type="number" min="0" step="1000000" placeholder="Ví dụ: 300000000" />
+        </div>
+        <div class="radio-group" id="rg-uu-tien-phan-bo">
+          <div class="radio-group-title">Ưu tiên phân bổ</div>
+          <div class="radio-options" id="ro-uu-tien-phan-bo">
+            <!-- injected by JS -->
+          </div>
+        </div>
+        <div class="radio-group" id="rg-muc-hoan-thien">
+          <div class="radio-group-title">Mức hoàn thiện mong muốn</div>
+          <div class="radio-options" id="ro-muc-hoan-thien">
+            <!-- injected by JS -->
+          </div>
+        </div>
+        <div class="field-group">
+          <label>Thời gian mong muốn hoàn thành</label>
+          <input id="f-thoi-gian-hoan-thanh" type="text" placeholder="Ví dụ: 2 tháng" />
+        </div>
+        <div class="field-group">
+          <label>Các mốc quan trọng</label>
+          <input id="f-cac-moc-quan-trong" type="text" placeholder="Ví dụ: chốt thiết kế, bắt đầu thi công..." />
+        </div>
+        <div class="field-group">
+          <label>Phong cách mong muốn</label>
+          <textarea id="f-khaosat-phongcach" placeholder="Ví dụ: hiện đại tối giản, ấm cúng, nhiều ánh sáng tự nhiên..."></textarea>
+        </div>
+        <div class="field-group">
+          <label>Hình ảnh tham khảo khách thích</label>
+          <textarea id="f-khaosat-hinhanh" placeholder="Dán link Pinterest/Behance hoặc mô tả phong cách hình ảnh bạn thích..."></textarea>
+        </div>
+        <div class="field-group">
+          <label>Bạn ghét điều gì trong không gian sống</label>
+          <textarea id="f-khaosat-khonggian" placeholder="Ví dụ: không thích tối, bí, quá nhiều chi tiết rối, khó vệ sinh..."></textarea>
+        </div>
+      </div>
+    </details>
+
+
+    <details class="accordion-step" id="step-2">
+      <summary class="accordion-summary">
+        <span class="step-num">8</span>
+        <span class="step-title">Thông tin tổng quan dự án</span>
         <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </summary>
       <div class="accordion-body">
@@ -703,7 +970,7 @@
         </div>
 
         <div class="field-group">
-          <label>Địa chỉ thi công <span class="required">*</span></label>
+          <label>Địa điểm xây dựng <span class="required">*</span></label>
           <input type="text" id="f-diachi" placeholder="123 Nguyễn Huệ, Quận 1, TP.HCM" autocomplete="street-address" />
           <div class="field-error" id="err-diachi">Vui lòng nhập địa chỉ thi công.</div>
         </div>
@@ -717,95 +984,17 @@
           <div class="field-group">
             <label>Loại công trình</label>
             <select id="f-nguon">
-                <option value="">-- Chọn loại --</option>
-                <option value="Nhà phố">Nhà phố</option>
-                <option value="Chung cư">Chung cư</option>
-                <option value="Biệt thự">Biệt thự</option>
-                <option value="Nhà hàng">Nhà hàng</option>
-                <option value="Văn phòng">Văn phòng</option>
+              <option value="">-- Chọn loại --</option>
+              <option value="Nhà phố">Nhà phố</option>
+              <option value="Chung cư">Chung cư</option>
+              <option value="Biệt thự">Biệt thự</option>
+              <option value="Nhà hàng">Nhà hàng</option>
+              <option value="Văn phòng">Văn phòng</option>
             </select>
           </div>
-          <div class="field-group">
-            <label>Tên dự án</label>
-            <input type="text" id="f-ten-du-an" placeholder="Ví dụ: Biệt thự gia đình Nguyễn" />
-          </div>
-
-          <div class="field-group">
-            <label>Chủ đầu tư / Đại diện</label>
-            <input type="text" id="f-chu-dau-tu" placeholder="Họ tên hoặc tên công ty" />
-          </div>
         </div>
       </div>
     </details>
-
-    <!-- ========= BƯỚC 2: CHỌN PHÒNG ========= -->
-    <details class="accordion-step" id="step-2">
-      <summary class="accordion-summary">
-        <span class="step-num">2</span>
-        <span class="step-title">Chọn phòng muốn thiết kế</span>
-        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-      </summary>
-      <div class="accordion-body">
-        <p class="step-desc">Chọn tất cả các phòng bạn muốn thiết kế nội thất.</p>
-        <div class="room-check-grid" id="grid-rooms">
-          <!-- injected by JS -->
-        </div>
-        <div class="field-error" id="err-rooms" style="margin-top:4px;">Vui lòng chọn ít nhất một phòng.</div>
-      </div>
-    </details>
-
-    <!-- ========= BƯỚC 3: CHI TIẾT TỪNG PHÒNG ========= -->
-    <details class="accordion-step" id="step-3">
-      <summary class="accordion-summary">
-        <span class="step-num">3</span>
-        <span class="step-title">Chi tiết từng phòng</span>
-        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-      </summary>
-      <div class="accordion-body">
-        <p class="step-desc">Điền chi tiết yêu cầu cho từng phòng đã chọn ở bước 2.</p>
-        <p class="step3-empty" id="step3-empty">← Hãy chọn ít nhất một phòng ở Bước 2 để tiếp tục.</p>
-        <div id="room-details-container"></div>
-        <div class="field-error" id="err-step3" style="margin-top:4px;"></div>
-      </div>
-    </details>
-
-    <!-- ========= BƯỚC 4: NGÂN SÁCH & THỜI GIAN ========= -->
-    <details class="accordion-step" id="step-4">
-      <summary class="accordion-summary">
-        <span class="step-num">4</span>
-        <span class="step-title">Ngân sách &amp; Thời gian</span>
-        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-      </summary>
-      <div class="accordion-body">
-        <p class="step-desc">Thông tin này giúp chúng tôi đề xuất giải pháp phù hợp nhất.</p>
-
-        <div class="radio-group" id="rg-ngansach">
-          <div class="radio-group-title">Ngân sách dự kiến <span class="required" style="color:var(--primary)">*</span></div>
-          <div class="radio-options" id="ro-ngansach">
-            <!-- injected by JS -->
-          </div>
-          <div class="field-error" id="err-ngansach">Vui lòng chọn ngân sách dự kiến.</div>
-        </div>
-
-        <hr class="section-divider" />
-
-        <div class="radio-group" id="rg-thoigian">
-          <div class="radio-group-title">Thời gian muốn thi công <span class="required" style="color:var(--primary)">*</span></div>
-          <div class="radio-options" id="ro-thoigian">
-            <!-- injected by JS -->
-          </div>
-          <div class="field-error" id="err-thoigian">Vui lòng chọn thời gian thi công.</div>
-        </div>
-
-        <hr class="section-divider" />
-
-        <div class="field-group">
-          <label>Yêu cầu đặc biệt</label>
-          <textarea id="f-yeucau" placeholder="Nhà có trẻ nhỏ, thú cưng, yêu cầu đặc biệt về màu sắc..."></textarea>
-        </div>
-      </div>
-    </details>
-
     <!-- SUBMIT -->
     <div class="submit-wrap">
       <button class="btn btn-primary btn-submit" onclick="handleSubmit()">Gửi yêu cầu tư vấn ✓</button>
@@ -870,41 +1059,200 @@
     ];
 
     const PHONG_CACH = [
+      { id: "co-dien",      name: "Cổ điển (Classical)",             img: "https://images.unsplash.com/photo-1577717903315-1691ae25ab3f?w=480&h=360&fit=crop&auto=format" },
+      { id: "tan-co-dien", name: "Tân cổ điển (Neoclassical)",       img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=480&h=360&fit=crop&auto=format" },
+      { id: "hien-dai",    name: "Hiện đại (Modern)",                img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=480&h=360&fit=crop&auto=format" },
+      { id: "toi-gian",    name: "Tối giản (Minimalism)",            img: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=480&h=360&fit=crop&auto=format" },
+      { id: "cong-nghiep", name: "Công nghiệp (Industrial)",         img: "https://images.unsplash.com/photo-1564540574859-0dfb63985953?w=480&h=360&fit=crop&auto=format" },
+      { id: "bac-au",      name: "Bắc Âu (Scandinavian)",            img: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=480&h=360&fit=crop&auto=format" },
+      { id: "dia-trung-hai", name: "Địa Trung Hải (Mediterranean)",  img: "https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=480&h=360&fit=crop&auto=format" },
+      { id: "nhat-ban",    name: "Nhật Bản (Japanese Zen)",          img: "https://images.unsplash.com/photo-1545259741-2ea3ebf61fa3?w=480&h=360&fit=crop&auto=format" },
+      { id: "duong-dai",   name: "Đương đại (Contemporary)",         img: "https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?w=480&h=360&fit=crop&auto=format" },
+      { id: "rustic",      name: "Rustic (Mộc mạc)",                 img: "https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=480&h=360&fit=crop&auto=format" }
+    ];
+
+    const COLOUR_COMBO = [
       {
-        id: "scandinavian",
-        name: "Scandinavian",
-        desc: "Tối giản, gỗ sáng, tone trắng kem",
-        img: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=480&h=360&fit=crop&auto=format"
+        id: "tra-sua-xam",
+        name: "Trà sữa & Xám ông",
+        img: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=480&h=360&fit=crop&auto=format",
+        colors: [
+          { hex: "#D4C5B0", name: "Màu Trà sữa" },
+          { hex: "#7A8A88", name: "Xám Quý ông" },
+          { hex: "#EDE9E0", name: "Trắng nhạt" },
+          { hex: "#9BA5A4", name: "Xám lio" }
+        ]
       },
       {
-        id: "japandi",
-        name: "Japandi",
-        desc: "Nhẹ nhàng, thiên nhiên, tĩnh lặng",
-        img: "https://images.unsplash.com/photo-1617806118233-18e1de247200?w=480&h=360&fit=crop&auto=format"
+        id: "xam-den-nau",
+        name: "Xám thẩm & Đen",
+        img: "https://images.unsplash.com/photo-1556911220-bff31c812dba?w=480&h=360&fit=crop&auto=format",
+        colors: [
+          { hex: "#5A6060", name: "Xám thẩm" },
+          { hex: "#1A1A1A", name: "Đen kim cương" },
+          { hex: "#7D5A3C", name: "Nâu jeep" },
+          { hex: "#D4C5B0", name: "Màu Trà sữa" }
+        ]
       },
       {
-        id: "modern-luxury",
-        name: "Modern Luxury",
-        desc: "Sang trọng, vàng đồng, nhung tối",
-        img: "https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=480&h=360&fit=crop&auto=format"
+        id: "tra-sua-oc-cho",
+        name: "Trà sữa & Óc chó",
+        img: "https://images.unsplash.com/photo-1556909212-d5b604d0c90d?w=480&h=360&fit=crop&auto=format",
+        colors: [
+          { hex: "#D4C5B0", name: "Màu Trà sữa" },
+          { hex: "#5C3D2E", name: "Gỗ óc chó" },
+          { hex: "#C4A882", name: "Nâu nhạt" },
+          { hex: "#9B7B5E", name: "Gỗ óc chó nhạt" }
+        ]
       },
       {
-        id: "industrial",
-        name: "Industrial",
-        desc: "Thô mộc, kim loại, bê tông",
-        img: "https://images.unsplash.com/photo-1564540574859-0dfb63985953?w=480&h=360&fit=crop&auto=format"
+        id: "tra-sua-trang-nga",
+        name: "Trà sữa & Trắng ngà",
+        img: "https://images.unsplash.com/photo-1600489000022-c2086d79f9d4?w=480&h=360&fit=crop&auto=format",
+        colors: [
+          { hex: "#D4C5B0", name: "Màu Trà sữa" },
+          { hex: "#F5EFE6", name: "Trắng ngà" },
+          { hex: "#C4A882", name: "Nâu nhạt" },
+          { hex: "#7D5A3C", name: "Nâu óc chó" }
+        ]
       },
       {
-        id: "tropical",
-        name: "Tropical",
-        desc: "Nhiệt đới, mây tre, xanh lá",
-        img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=480&h=360&fit=crop&auto=format"
+        id: "tra-sua-oc-cho-dam",
+        name: "Trà sữa & Óc chó đậm",
+        img: "https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=480&h=360&fit=crop&auto=format",
+        colors: [
+          { hex: "#D4C5B0", name: "Màu Trà sữa" },
+          { hex: "#4A2C1A", name: "Gỗ óc chó đậm" },
+          { hex: "#A0714F", name: "Nâu hạt dẻ" },
+          { hex: "#B5A898", name: "Xám trà sữa" }
+        ]
       },
       {
-        id: "classic",
-        name: "Classic",
-        desc: "Cổ điển, đối xứng, chạm khắc",
-        img: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=480&h=360&fit=crop&auto=format"
+        id: "nau-quy-ong",
+        name: "Nâu Quý ông & Xanh nâu",
+        img: "https://images.unsplash.com/photo-1556912167-f556f1f39fdf?w=480&h=360&fit=crop&auto=format",
+        colors: [
+          { hex: "#7D5A3C", name: "Nâu Quý ông" },
+          { hex: "#E8E0D0", name: "Trắng kem bẩn" },
+          { hex: "#A0714F", name: "Nâu hạt dẻ" },
+          { hex: "#8FA097", name: "Xanh nâu nhạt" }
+        ]
+      },
+      {
+        id: "tra-sua-ho-dao",
+        name: "Trà sữa & Hồ đào",
+        img: "https://images.unsplash.com/photo-1556912173-3bb406ef7e8b?w=480&h=360&fit=crop&auto=format",
+        colors: [
+          { hex: "#D4C5B0", name: "Màu Trà sữa" },
+          { hex: "#8B4513", name: "Nâu hồ đào" },
+          { hex: "#9B7B5E", name: "Gỗ óc chó nhạt" },
+          { hex: "#CCCCCC", name: "Xám nhạt" }
+        ]
+      }
+    ];
+
+    const MATERIALS = [
+      {
+        id: "go-tu-nhien", name: "Gỗ tự nhiên",
+        img: "https://images.unsplash.com/photo-1542621334-a254cf47733d?w=480&h=360&fit=crop&auto=format",
+        types: [
+          { id: "soi-my",   name: "Sồi Mỹ",   img: "https://images.unsplash.com/photo-1574016290398-6feabb46dc65?w=200&h=200&fit=crop&auto=format" },
+          { id: "teak",     name: "Teak",      img: "https://images.unsplash.com/photo-1542621334-a254cf47733d?w=200&h=200&fit=crop&auto=format" },
+          { id: "oc-cho",   name: "Óc chó",    img: "https://images.unsplash.com/photo-1566791396524-5ab6a641cb10?w=200&h=200&fit=crop&auto=format" },
+          { id: "xoan-dao", name: "Xoan đào",  img: "https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=200&h=200&fit=crop&auto=format" },
+          { id: "huong",    name: "Hương",     img: "https://images.unsplash.com/photo-1548591890-5e0a4b3d7d15?w=200&h=200&fit=crop&auto=format" },
+          { id: "go-lat",   name: "Lát hoa",   img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&auto=format" },
+          { id: "go-mit",   name: "Mít",       img: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=200&h=200&fit=crop&auto=format" },
+          { id: "go-pine",  name: "Thông",     img: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=200&h=200&fit=crop&auto=format" }
+        ]
+      },
+      {
+        id: "go-cong-nghiep", name: "Gỗ công nghiệp",
+        img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=480&h=360&fit=crop&auto=format",
+        types: [
+          { id: "mdf",      name: "MDF",      img: "https://images.unsplash.com/photo-1574016290398-6feabb46dc65?w=200&h=200&fit=crop&auto=format" },
+          { id: "hdf",      name: "HDF",      img: "https://images.unsplash.com/photo-1542621334-a254cf47733d?w=200&h=200&fit=crop&auto=format" },
+          { id: "mfc",      name: "MFC",      img: "https://images.unsplash.com/photo-1566791396524-5ab6a641cb10?w=200&h=200&fit=crop&auto=format" },
+          { id: "laminate", name: "Laminate", img: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=200&h=200&fit=crop&auto=format" },
+          { id: "acrylic",  name: "Acrylic",  img: "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=200&h=200&fit=crop&auto=format" },
+          { id: "melamine", name: "Melamine", img: "https://images.unsplash.com/photo-1548591890-5e0a4b3d7d15?w=200&h=200&fit=crop&auto=format" },
+          { id: "veneer",   name: "Veneer",   img: "https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=200&h=200&fit=crop&auto=format" }
+        ]
+      },
+      {
+        id: "kinh", name: "Kính",
+        img: "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=480&h=360&fit=crop&auto=format",
+        types: [
+          { id: "kinh-trong",     name: "Kính trong",  img: "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=200&h=200&fit=crop&auto=format" },
+          { id: "kinh-mo",        name: "Kính mờ",    img: "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=200&h=200&fit=crop&auto=format" },
+          { id: "kinh-cuong-luc", name: "Cường lực",  img: "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=200&h=200&fit=crop&auto=format" },
+          { id: "kinh-guong",     name: "Kính gương", img: "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=200&h=200&fit=crop&auto=format" },
+          { id: "kinh-mau",       name: "Kính màu",   img: "https://images.unsplash.com/photo-1551730459-92db2a308d6a?w=200&h=200&fit=crop&auto=format" },
+          { id: "kinh-san",       name: "Kính sần",   img: "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=200&h=200&fit=crop&auto=format" },
+          { id: "kinh-long-chim", name: "Long chim",  img: "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=200&h=200&fit=crop&auto=format" }
+        ]
+      },
+      {
+        id: "da", name: "Đá",
+        img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=480&h=360&fit=crop&auto=format",
+        types: [
+          { id: "fairy-white",       name: "Fairy White",           img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=200&h=200&fit=crop&auto=format" },
+          { id: "fantasy-gray",      name: "Fantasy Gray",          img: "https://images.unsplash.com/photo-1584473457406-6240486418e9?w=200&h=200&fit=crop&auto=format" },
+          { id: "fossil-brown",      name: "Fossil Brown",          img: "https://images.unsplash.com/photo-1535567465461-dfaa55ba6f82?w=200&h=200&fit=crop&auto=format" },
+          { id: "fossil-gray",       name: "Fossil Gray",           img: "https://images.unsplash.com/photo-1584473457406-6240486418e9?w=200&h=200&fit=crop&auto=format" },
+          { id: "frost-white",       name: "Frost White",           img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=200&h=200&fit=crop&auto=format" },
+          { id: "marbella-white",    name: "Marbella White",        img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=200&h=200&fit=crop&auto=format" },
+          { id: "marquina-midnight", name: "Marquina Midnight",     img: "https://images.unsplash.com/photo-1557053910-d9eadeed1c58?w=200&h=200&fit=crop&auto=format" },
+          { id: "meridian-gray",     name: "Meridian Gray",         img: "https://images.unsplash.com/photo-1584473457406-6240486418e9?w=200&h=200&fit=crop&auto=format" },
+          { id: "midnight-corvo",    name: "Midnight Corvo",        img: "https://images.unsplash.com/photo-1557053910-d9eadeed1c58?w=200&h=200&fit=crop&auto=format" },
+          { id: "midnight-majesty",  name: "Midnight Majesty",      img: "https://images.unsplash.com/photo-1557053910-d9eadeed1c58?w=200&h=200&fit=crop&auto=format" },
+          { id: "galant-gray",       name: "Galant Gray",           img: "https://images.unsplash.com/photo-1584473457406-6240486418e9?w=200&h=200&fit=crop&auto=format" },
+          { id: "glacier-white",     name: "Glacier White",         img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=200&h=200&fit=crop&auto=format" },
+          { id: "gray-lagoon",       name: "Gray Lagoon",           img: "https://images.unsplash.com/photo-1584473457406-6240486418e9?w=200&h=200&fit=crop&auto=format" },
+          { id: "hazelwood",         name: "Hazelwood",             img: "https://images.unsplash.com/photo-1535567465461-dfaa55ba6f82?w=200&h=200&fit=crop&auto=format" },
+          { id: "iced-gray",         name: "Iced Gray",             img: "https://images.unsplash.com/photo-1584473457406-6240486418e9?w=200&h=200&fit=crop&auto=format" },
+          { id: "mirano-gray",       name: "Mirano Gray",           img: "https://images.unsplash.com/photo-1584473457406-6240486418e9?w=200&h=200&fit=crop&auto=format" },
+          { id: "montclair-white",   name: "Montclair White",       img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=200&h=200&fit=crop&auto=format" },
+          { id: "mystic-gray",       name: "Mystic Gray",           img: "https://images.unsplash.com/photo-1527664544008-d47f0c0d6f36?w=200&h=200&fit=crop&auto=format" },
+          { id: "new-calacatta",     name: "New Calacatta Laza",    img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=200&h=200&fit=crop&auto=format" },
+          { id: "iced-white",        name: "Iced White",            img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=200&h=200&fit=crop&auto=format" },
+          { id: "lido-blanco",       name: "Lido Blanco",           img: "https://images.unsplash.com/photo-1535567465461-dfaa55ba6f82?w=200&h=200&fit=crop&auto=format" },
+          { id: "macabo-gray",       name: "Macabo Gray",           img: "https://images.unsplash.com/photo-1557053910-d9eadeed1c58?w=200&h=200&fit=crop&auto=format" },
+          { id: "manhattan-gray",    name: "Manhattan Gray",        img: "https://images.unsplash.com/photo-1557053910-d9eadeed1c58?w=200&h=200&fit=crop&auto=format" },
+          { id: "mara-blanca",       name: "Mara Blanca",           img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=200&h=200&fit=crop&auto=format" },
+          { id: "new-carrara",       name: "New Carrara Marmi",     img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=200&h=200&fit=crop&auto=format" },
+          { id: "pacific-salt",      name: "Pacific Salt",          img: "https://images.unsplash.com/photo-1535567465461-dfaa55ba6f82?w=200&h=200&fit=crop&auto=format" },
+          { id: "pearl-gray",        name: "Pearl Gray",            img: "https://images.unsplash.com/photo-1584473457406-6240486418e9?w=200&h=200&fit=crop&auto=format" },
+          { id: "pebble-rock",       name: "Pebble Rock",           img: "https://images.unsplash.com/photo-1527664544008-d47f0c0d6f36?w=200&h=200&fit=crop&auto=format" },
+          { id: "peppercorn-white",  name: "Peppercorn White",      img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=200&h=200&fit=crop&auto=format" },
+          { id: "perla-white",       name: "Perla White",           img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=200&h=200&fit=crop&auto=format" }
+        ]
+      },
+      {
+        id: "inox", name: "Inox",
+        img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=480&h=360&fit=crop&auto=format",
+        types: [
+          { id: "inox-bong",     name: "Inox bóng",  img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=200&h=200&fit=crop&auto=format" },
+          { id: "inox-mo",       name: "Inox mờ",    img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=200&h=200&fit=crop&auto=format" },
+          { id: "inox-den",      name: "Inox đen",   img: "https://images.unsplash.com/photo-1564540574859-0dfb63985953?w=200&h=200&fit=crop&auto=format" },
+          { id: "inox-vang",     name: "Inox vàng",  img: "https://images.unsplash.com/photo-1588421357574-87938a86fa28?w=200&h=200&fit=crop&auto=format" },
+          { id: "inox-brushed",  name: "Brushed",    img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=200&h=200&fit=crop&auto=format" },
+          { id: "inox-hairline", name: "Hairline",   img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=200&h=200&fit=crop&auto=format" },
+          { id: "inox-dong",     name: "Inox đồng",  img: "https://images.unsplash.com/photo-1588421357574-87938a86fa28?w=200&h=200&fit=crop&auto=format" }
+        ]
+      },
+      {
+        id: "vai", name: "Vải",
+        img: "https://images.unsplash.com/photo-1558618047-3c2f1bc77e0e?w=480&h=360&fit=crop&auto=format",
+        types: [
+          { id: "vai-nhung",      name: "Vải nhung",  img: "https://images.unsplash.com/photo-1558618047-3c2f1bc77e0e?w=200&h=200&fit=crop&auto=format" },
+          { id: "vai-bo",         name: "Vải bố",     img: "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=200&h=200&fit=crop&auto=format" },
+          { id: "da-that",        name: "Da thật",    img: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=200&h=200&fit=crop&auto=format" },
+          { id: "da-pu",          name: "Da PU",      img: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=200&h=200&fit=crop&auto=format" },
+          { id: "vai-cotton",     name: "Cotton",     img: "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=200&h=200&fit=crop&auto=format" },
+          { id: "vai-linen",      name: "Linen",      img: "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=200&h=200&fit=crop&auto=format" },
+          { id: "vai-microfiber", name: "Microfiber", img: "https://images.unsplash.com/photo-1558618047-3c2f1bc77e0e?w=200&h=200&fit=crop&auto=format" }
+        ]
       }
     ];
 
@@ -921,8 +1269,8 @@
 
     const VAT_LIEU_OPTIONS = ["Gỗ tự nhiên", "Gỗ công nghiệp", "Da thật", "Vải nhung", "Kim loại", "Mây tre"];
     const UU_TIEN_OPTIONS  = ["Quan trọng nhất", "Quan trọng", "Bình thường"];
-    const NGAN_SACH_OPTIONS = ["Dưới 50 triệu", "50 — 150 triệu", "150 — 300 triệu", "Trên 300 triệu", "Chưa xác định"];
-    const THOI_GIAN_OPTIONS = ["Trong 1 tháng tới", "1 — 3 tháng tới", "3 — 6 tháng tới", "Chưa có kế hoạch cụ thể"];
+    const UU_TIEN_PHAN_BO_OPTIONS = ["Phần thô", "Nội thất", "Cảnh quan", "Cân bằng các hạng mục"];
+    const MUC_HOAN_THIEN_OPTIONS = ["Basic", "Tiêu chuẩn", "Cao cấp"];
 
     const MAX_PHOTOS_PER_ROOM = 5;
     const MAX_PHOTO_MB        = 5;
@@ -936,12 +1284,18 @@
       ten_du_an: "", chu_dau_tu: "", loai_cong_trinh: "", dt_dat: "",
       selected_rooms: [],
       room_details: {},
-      ngan_sach: "", thoi_gian_thi_cong: "", yeu_cau_dac_biet: ""
+      ngan_sach: "", thoi_gian_thi_cong: "", yeu_cau_dac_biet: "",
+      uu_tien_phan_bo: "", muc_hoan_thien: "", cac_moc_quan_trong: "",
+      khao_sat_phong_cach: "", khao_sat_hinh_anh: "", khao_sat_khong_gian: "",
+      thoi_quen: [], so_thich: [],
+      ly_do: "", ky_vong: [], uu_tien: "",
+      phong_cach: [], colour_combo: [],
+      materials: {}
     };
 
     function ensureRoomState(roomId) {
       if (!state.room_details[roomId])
-        state.room_details[roomId] = { phong_cach: "", mau_sac: [], vat_lieu: [], uu_tien: "", ghi_chu: "", photos: [] };
+        state.room_details[roomId] = { dien_tich: "", yeu_cau: [], yeu_cau_khac: "" };
     }
 
     /* ─────────────────────────────────────────────
@@ -1007,213 +1361,41 @@
           <svg class="rp-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
         </summary>
         <div class="room-panel-body">
-          <div class="rp-section-title">A. Phong cách thiết kế <span style="color:var(--error)">*</span></div>
-          <p class="selection-hint" style="margin-bottom:10px;">Chọn 1 phong cách</p>
-          <div class="card-grid" id="style-${room.id}"></div>
-          <div class="field-error" id="err-style-${room.id}">Vui lòng chọn phong cách.</div>
-
-          <div class="rp-section-title">B. Bảng màu chủ đạo <span style="font-weight:400;color:var(--text-muted)">(chọn 1–2)</span></div>
-          <div class="swatch-grid" id="swatches-${room.id}"></div>
-          <div class="field-error" id="err-swatch-${room.id}"></div>
-
-          <div class="rp-section-title">C. Vật liệu chính</div>
-          <div class="checkbox-grid" id="mats-${room.id}" style="margin-bottom:4px;"></div>
-
-          <div class="rp-section-title">D. Mức độ ưu tiên <span style="color:var(--error)">*</span></div>
-          <div class="radio-options" id="prio-${room.id}" style="margin-bottom:4px;"></div>
-          <div class="field-error" id="err-prio-${room.id}">Vui lòng chọn mức độ ưu tiên.</div>
-
-          <div class="rp-section-title">E. Ghi chú riêng</div>
-          <div class="field-group" style="margin-bottom:4px;">
-            <textarea id="note-${room.id}" placeholder="Ví dụ: cần tủ quần áo lớn, phòng có cửa sổ hướng Đông..." style="min-height:80px;"></textarea>
+          <div class="field-group" style="margin-top:14px;">
+            <label>Diện tích dự kiến (m²)</label>
+            <input type="number" id="dientich-${room.id}" placeholder="m²" min="1" />
           </div>
-
-          <div class="rp-section-title">F. Ảnh tham khảo <span style="font-weight:400;color:var(--text-muted)">(không bắt buộc)</span></div>
-          <div class="photo-drop-area" id="drop-${room.id}">
-            <div class="photo-drop-hint">📎 Nhấn để tải ảnh lên<br><small>JPG · PNG · WEBP &nbsp;·&nbsp; Tối đa 5 ảnh &nbsp;·&nbsp; Mỗi ảnh ≤ 5MB</small></div>
-            <input type="file" id="file-${room.id}" accept="image/jpeg,image/png,image/webp" multiple />
+          <div class="field-group" style="margin-top:12px;">
+            <label>Yêu cầu đặc biệt</label>
+            <div class="checkbox-grid" id="yeu-cau-grid-${room.id}"></div>
+            <input type="text" id="yeu-cau-khac-${room.id}" class="other-input" placeholder="Nhập yêu cầu khác..." style="display:none;">
           </div>
-          <div class="photo-size-error" id="err-photo-${room.id}"></div>
-          <div class="photo-preview-grid" id="preview-${room.id}"></div>
         </div>`;
-      setTimeout(() => {
-        renderRoomStyleCards(room.id);
-        renderSwatches(room.id);
-        renderRoomMaterials(room.id);
-        renderRoomPriority(room.id);
-        initPhotoUpload(room.id);
-      }, 0);
+      setTimeout(() => renderRoomYeuCau(room.id), 0);
       return panel;
     }
 
-    /* ─────────────────────────────────────────────
-       RENDER: STYLE CARDS (per room, single select)
-    ───────────────────────────────────────────── */
-    function renderRoomStyleCards(roomId) {
-      const container = document.getElementById("style-" + roomId);
-      if (!container) return;
+    function renderRoomYeuCau(roomId) {
       const d = state.room_details[roomId];
+      const container = document.getElementById("yeu-cau-grid-" + roomId);
+      if (!container || !d) return;
+      const options = ["Phòng kín", "Cần cách âm", "Cần linh hoạt chuyển đổi", "Phong thủy", "Kỹ thuật riêng (smart home, năng lượng mặt trời...)", "Khác"];
       container.innerHTML = "";
-      PHONG_CACH.forEach(item => {
-        const card = document.createElement("div");
-        card.className = "selection-card" + (d.phong_cach === item.name ? " selected" : "");
-        card.innerHTML = `
-          <div class="card-img-wrap">
-            <img src="${item.img}" alt="${item.name}" loading="lazy" />
-            <div class="card-check"><svg viewBox="0 0 12 10"><polyline points="1,5 4,9 11,1"/></svg></div>
-          </div>
-          <div class="card-body">
-            <div class="card-title">${item.name}</div>
-            <div class="card-desc">${item.desc}</div>
-          </div>`;
-        card.addEventListener("click", () => {
-          d.phong_cach = item.name;
-          container.querySelectorAll(".selection-card").forEach(c => c.classList.remove("selected"));
-          card.classList.add("selected");
-          showErr("err-style-" + roomId, false);
-        });
-        container.appendChild(card);
-      });
-    }
-
-    /* ─────────────────────────────────────────────
-       RENDER: COLOR SWATCHES (per room, max 2)
-    ───────────────────────────────────────────── */
-    function renderSwatches(roomId) {
-      const container = document.getElementById("swatches-" + roomId);
-      if (!container) return;
-      const d = state.room_details[roomId];
-      container.innerHTML = "";
-      MAU_SAC.forEach(sw => {
+      options.forEach(opt => {
         const item = document.createElement("div");
-        item.className = "swatch-item" + (d.mau_sac.includes(sw.id) ? " selected" : "");
-        if (sw.color === null) {
-          item.innerHTML = `
-            <div class="swatch-circle" style="background:conic-gradient(#ff6b6b,#ffd93d,#6bcb77,#4d96ff,#ff6b6b);position:relative;">
-              <input type="color" style="opacity:0;position:absolute;inset:0;width:100%;height:100%;cursor:pointer;" id="cp-${roomId}" />
-            </div>
-            <span class="swatch-label">${sw.name}</span>`;
-          const cp = item.querySelector("input[type=color]");
-          cp.addEventListener("input", () => { item.querySelector(".swatch-circle").style.background = cp.value; });
-          cp.addEventListener("change", () => {
-            if (!d.mau_sac.includes("tuy-chinh")) {
-              if (d.mau_sac.length < 2) { d.mau_sac.push("tuy-chinh"); item.classList.add("selected"); }
-            }
-            d.custom_color = cp.value;
-          });
-        } else {
-          item.innerHTML = `<div class="swatch-circle" style="background:${sw.color};"></div><span class="swatch-label">${sw.name}</span>`;
-          item.addEventListener("click", () => {
-            const idx = d.mau_sac.indexOf(sw.id);
-            const errEl = document.getElementById("err-swatch-" + roomId);
-            if (idx === -1) {
-              if (d.mau_sac.length >= 2) { errEl.textContent = "Chỉ chọn tối đa 2 màu."; errEl.classList.add("visible"); return; }
-              d.mau_sac.push(sw.id); item.classList.add("selected");
-            } else { d.mau_sac.splice(idx, 1); item.classList.remove("selected"); }
-            errEl.classList.remove("visible");
-          });
-        }
-        container.appendChild(item);
-      });
-    }
-
-    /* ─────────────────────────────────────────────
-       RENDER: MATERIALS (per room)
-    ───────────────────────────────────────────── */
-    function renderRoomMaterials(roomId) {
-      const container = document.getElementById("mats-" + roomId);
-      if (!container) return;
-      const d = state.room_details[roomId];
-      container.innerHTML = "";
-      VAT_LIEU_OPTIONS.forEach(vl => {
-        const item = document.createElement("div");
-        item.className = "checkbox-item" + (d.vat_lieu.includes(vl) ? " checked" : "");
-        item.innerHTML = `<div class="checkbox-box"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,7 9,1"/></svg></div><span class="checkbox-label">${vl}</span>`;
+        item.className = "checkbox-item" + (d.yeu_cau.includes(opt) ? " checked" : "");
+        item.innerHTML = `<div class="checkbox-box"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,7 9,1"/></svg></div><span class="checkbox-label">${opt}</span>`;
         item.addEventListener("click", () => {
-          const idx = d.vat_lieu.indexOf(vl);
-          if (idx === -1) { d.vat_lieu.push(vl); item.classList.add("checked"); }
-          else            { d.vat_lieu.splice(idx, 1); item.classList.remove("checked"); }
+          const idx = d.yeu_cau.indexOf(opt);
+          if (idx === -1) { d.yeu_cau.push(opt); item.classList.add("checked"); }
+          else            { d.yeu_cau.splice(idx, 1); item.classList.remove("checked"); }
+          if (opt === "Khác") {
+            const inp = document.getElementById("yeu-cau-khac-" + roomId);
+            if (inp) { inp.style.display = item.classList.contains("checked") ? "block" : "none"; if (!item.classList.contains("checked")) inp.value = ""; }
+          }
         });
         container.appendChild(item);
       });
-    }
-
-    /* ─────────────────────────────────────────────
-       RENDER: PRIORITY (per room)
-    ───────────────────────────────────────────── */
-    function renderRoomPriority(roomId) {
-      const container = document.getElementById("prio-" + roomId);
-      if (!container) return;
-      const d = state.room_details[roomId];
-      container.innerHTML = "";
-      UU_TIEN_OPTIONS.forEach(opt => {
-        const item = document.createElement("div");
-        item.className = "radio-item" + (d.uu_tien === opt ? " selected" : "");
-        item.innerHTML = `<div class="radio-dot"></div><span class="radio-text">${opt}</span>`;
-        item.addEventListener("click", () => {
-          d.uu_tien = opt;
-          container.querySelectorAll(".radio-item").forEach(el => el.classList.remove("selected"));
-          item.classList.add("selected");
-          showErr("err-prio-" + roomId, false);
-        });
-        container.appendChild(item);
-      });
-    }
-
-    /* ─────────────────────────────────────────────
-       PHOTO UPLOAD (per room)
-    ───────────────────────────────────────────── */
-    function initPhotoUpload(roomId) {
-      const dropArea  = document.getElementById("drop-"  + roomId);
-      const fileInput = document.getElementById("file-"  + roomId);
-      if (!dropArea || !fileInput) return;
-      dropArea.addEventListener("click", () => fileInput.click());
-      fileInput.addEventListener("change", () => { handlePhotoFiles(roomId, fileInput.files); fileInput.value = ""; });
-    }
-
-    function getTotalPhotosMB() {
-      let total = 0;
-      state.selected_rooms.forEach(rid => { const d = state.room_details[rid]; if (d) d.photos.forEach(p => total += p.size); });
-      return total / (1024 * 1024);
-    }
-
-    function handlePhotoFiles(roomId, files) {
-      const d     = state.room_details[roomId];
-      const errEl = document.getElementById("err-photo-" + roomId);
-      errEl.classList.remove("visible");
-      for (const file of files) {
-        if (d.photos.length >= MAX_PHOTOS_PER_ROOM) {
-          errEl.textContent = `Tối đa ${MAX_PHOTOS_PER_ROOM} ảnh/phòng.`; errEl.classList.add("visible"); break;
-        }
-        if (file.size > MAX_PHOTO_MB * 1024 * 1024) {
-          errEl.textContent = `"${file.name}" vượt quá ${MAX_PHOTO_MB}MB.`; errEl.classList.add("visible"); continue;
-        }
-        if (getTotalPhotosMB() + file.size / (1024 * 1024) > MAX_TOTAL_MB) {
-          errEl.textContent = `Tổng ảnh vượt quá ${MAX_TOTAL_MB}MB.`; errEl.classList.add("visible"); break;
-        }
-        d.photos.push({ name: file.name, file, size: file.size, preview: URL.createObjectURL(file) });
-      }
-      renderPhotoPreviews(roomId);
-    }
-
-    function renderPhotoPreviews(roomId) {
-      const grid = document.getElementById("preview-" + roomId);
-      if (!grid) return;
-      grid.innerHTML = "";
-      state.room_details[roomId].photos.forEach((p, idx) => {
-        const thumb = document.createElement("div");
-        thumb.className = "photo-thumb";
-        thumb.innerHTML = `<img src="${p.preview}" alt="${p.name}" /><button class="photo-thumb-remove" title="Xóa">✕</button>`;
-        thumb.querySelector(".photo-thumb-remove").addEventListener("click", e => { e.stopPropagation(); removePhoto(roomId, idx); });
-        grid.appendChild(thumb);
-      });
-    }
-
-    function removePhoto(roomId, idx) {
-      const d = state.room_details[roomId];
-      URL.revokeObjectURL(d.photos[idx].preview);
-      d.photos.splice(idx, 1);
-      renderPhotoPreviews(roomId);
     }
 
     /* ─────────────────────────────────────────────
@@ -1221,6 +1403,7 @@
     ───────────────────────────────────────────── */
     function renderRadios(containerId, options, stateKey) {
       const container = document.getElementById(containerId);
+      if (!container) return;
       container.innerHTML = "";
       options.forEach(opt => {
         const item = document.createElement("div");
@@ -1258,11 +1441,11 @@
       markField("f-dientich", noDientich); showErr("err-dientich", noDientich); if (noDientich) ok = false;
       state.ho_ten = ten; state.so_dien_thoai = sdt; state.email = email;
       state.dia_chi = diachi; state.dien_tich = dientich;
-      state.nguon_khach = document.getElementById("f-nguon").value;
-      state.ten_du_an = document.getElementById("f-ten-du-an").value.trim();
-      state.chu_dau_tu = document.getElementById("f-chu-dau-tu").value.trim();
-      state.loai_cong_trinh = document.getElementById("f-loai-ct").value;
-      state.dt_dat = document.getElementById("f-dt-dat").value.trim();
+      state.nguon_khach = document.getElementById("f-nguon")?.value || "";
+      state.ten_du_an = document.getElementById("f-ten-du-an")?.value.trim() || "";
+      state.chu_dau_tu = document.getElementById("f-chu-dau-tu")?.value.trim() || "";
+      state.loai_cong_trinh = document.getElementById("f-loai-ct")?.value || "";
+      state.dt_dat = document.getElementById("f-dt-dat")?.value.trim() || "";
       return ok;
     }
 
@@ -1273,28 +1456,27 @@
     }
 
     function validateStep3() {
-      if (state.selected_rooms.length === 0) return true;
-      let ok = true;
       state.selected_rooms.forEach(roomId => {
         const d = state.room_details[roomId];
         if (!d) return;
-        const noteEl = document.getElementById("note-" + roomId);
-        if (noteEl) d.ghi_chu = noteEl.value.trim();
-        if (!d.phong_cach) { showErr("err-style-" + roomId, true); ok = false; }
-        if (!d.uu_tien)    { showErr("err-prio-"  + roomId, true); ok = false; }
+        const dtEl = document.getElementById("dientich-" + roomId);
+        if (dtEl) d.dien_tich = dtEl.value.trim();
+        const khacEl = document.getElementById("yeu-cau-khac-" + roomId);
+        if (khacEl) d.yeu_cau_khac = khacEl.value.trim();
       });
-      const errEl = document.getElementById("err-step3");
-      if (!ok) { errEl.textContent = "Vui lòng hoàn thiện thông tin cho tất cả các phòng."; errEl.classList.add("visible"); }
-      else errEl.classList.remove("visible");
-      return ok;
+      return true;
     }
 
     function validateStep4() {
-      let ok = true;
-      if (!state.ngan_sach)          { showErr("err-ngansach", true);  ok = false; } else showErr("err-ngansach", false);
-      if (!state.thoi_gian_thi_cong) { showErr("err-thoigian", true);  ok = false; } else showErr("err-thoigian", false);
-      state.yeu_cau_dac_biet = document.getElementById("f-yeucau").value.trim();
-      return ok;
+      state.ngan_sach = document.getElementById("f-tong-ngansach")?.value.trim() || "";
+      state.uu_tien_phan_bo = state.uu_tien_phan_bo || "";
+      state.muc_hoan_thien = state.muc_hoan_thien || "";
+      state.thoi_gian_thi_cong = document.getElementById("f-thoi-gian-hoan-thanh")?.value.trim() || "";
+      state.cac_moc_quan_trong = document.getElementById("f-cac-moc-quan-trong")?.value.trim() || "";
+      state.khao_sat_phong_cach = document.getElementById("f-khaosat-phongcach")?.value.trim() || "";
+      state.khao_sat_hinh_anh = document.getElementById("f-khaosat-hinhanh")?.value.trim() || "";
+      state.khao_sat_khong_gian = document.getElementById("f-khaosat-khonggian")?.value.trim() || "";
+      return true;
     }
 
     /* ─────────────────────────────────────────────
@@ -1400,10 +1582,20 @@
         ho_ten: state.ho_ten, so_dien_thoai: state.so_dien_thoai,
         email: state.email, dia_chi: state.dia_chi, dien_tich: state.dien_tich,
         nguon_khach: state.nguon_khach,
+        ten_du_an: state.ten_du_an,
+        chu_dau_tu: state.chu_dau_tu,
+        loai_cong_trinh: state.loai_cong_trinh,
+        dt_dat: state.dt_dat,
         rooms: roomsPayload,
         ngan_sach: state.ngan_sach,
         thoi_gian_thi_cong: state.thoi_gian_thi_cong,
         yeu_cau_dac_biet: state.yeu_cau_dac_biet,
+        uu_tien_phan_bo: state.uu_tien_phan_bo,
+        muc_hoan_thien: state.muc_hoan_thien,
+        cac_moc_quan_trong: state.cac_moc_quan_trong,
+        khao_sat_phong_cach: state.khao_sat_phong_cach,
+        khao_sat_hinh_anh: state.khao_sat_hinh_anh,
+        khao_sat_khong_gian: state.khao_sat_khong_gian,
         images
       };
 
@@ -1455,9 +1647,14 @@
         ["Địa chỉ thi công",  state.dia_chi],
         ["Diện tích",         state.dien_tich + " m²"],
         ["Phòng thiết kế",    rooms.join(", ")],
-        ["Ngân sách",         state.ngan_sach],
-        ["Thời gian thi công",state.thoi_gian_thi_cong],
-        ["Yêu cầu đặc biệt",  state.yeu_cau_dac_biet || "Không có"]
+        ["Tổng ngân sách dự kiến", state.ngan_sach || "Không có"],
+        ["Ưu tiên phân bổ",       state.uu_tien_phan_bo || "Không có"],
+        ["Mức hoàn thiện",        state.muc_hoan_thien || "Không có"],
+        ["Thời gian hoàn thành",  state.thoi_gian_thi_cong || "Không có"],
+        ["Các mốc quan trọng",    state.cac_moc_quan_trong || "Không có"],
+        ["Phong cách mong muốn", state.khao_sat_phong_cach || "Không có"],
+        ["Hình ảnh tham khảo",   state.khao_sat_hinh_anh || "Không có"],
+        ["Điều không thích",     state.khao_sat_khong_gian || "Không có"]
       ];
       document.getElementById("res-summary-rows").innerHTML = rows.map(([k, v]) =>
         `<div class="summary-row"><span class="summary-key">${k}</span><span class="summary-val">${v}</span></div>`
@@ -1484,8 +1681,138 @@
     ───────────────────────────────────────────── */
     function init() {
       renderRooms();
-      renderRadios("ro-ngansach", NGAN_SACH_OPTIONS, "ngan_sach");
-      renderRadios("ro-thoigian", THOI_GIAN_OPTIONS, "thoi_gian_thi_cong");
+      renderRadios("ro-uu-tien-phan-bo", UU_TIEN_PHAN_BO_OPTIONS, "uu_tien_phan_bo");
+      renderRadios("ro-muc-hoan-thien", MUC_HOAN_THIEN_OPTIONS, "muc_hoan_thien");
+      renderCheckboxGrid("thoi-quen-grid", ["Gọn gàng", "Làm việc tại nhà", "Hay tiếp khách", "Khác"], "thoi_quen", "thoi-quen-khac");
+      renderCheckboxGrid("so-thich-grid", ["Nuôi thú cưng", "Đọc sách", "Trồng cây", "Khác"], "so_thich", "so-thich-khac");
+      renderRadios("ly-do-radio", ["Ở", "Cho thuê", "Kinh doanh"], "ly_do");
+      renderCheckboxGrid("ky-vong-grid", ["Đẹp", "Sang trọng - luxury", "Tiện nghi", "Tối ưu chi phí", "Thể hiện cá tính", "Khác"], "ky_vong", "ky-vong-khac");
+      renderRadios("uu-tien-radio", ["Công năng", "Thẩm mỹ"], "uu_tien");
+      renderPhongCach();
+      renderColourCombo();
+      renderMaterials();
+    }
+
+    function renderColourCombo() {
+      const container = document.getElementById("grid-colour");
+      if (!container) return;
+      container.innerHTML = "";
+      COLOUR_COMBO.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "selection-card" + (state.colour_combo.includes(item.id) ? " selected" : "");
+        card.innerHTML = `
+          <div class="card-img-wrap">
+            <img src="${item.img}" alt="${item.name}" loading="lazy" />
+            <div class="card-check"><svg viewBox="0 0 12 10"><polyline points="1,5 4,9 11,1"/></svg></div>
+          </div>
+          <div class="combo-swatches">
+            ${item.colors.map(c => `<div class="combo-swatch"><div class="combo-dot" style="background:${c.hex};"></div><span class="combo-swatch-name">${c.name}</span></div>`).join("")}
+          </div>`;
+        card.addEventListener("click", () => {
+          const idx = state.colour_combo.indexOf(item.id);
+          if (idx === -1) { state.colour_combo.push(item.id); card.classList.add("selected"); }
+          else            { state.colour_combo.splice(idx, 1); card.classList.remove("selected"); }
+        });
+        container.appendChild(card);
+      });
+    }
+
+    function renderMaterials() {
+      const section = document.getElementById("material-section");
+      if (!section) return;
+      section.innerHTML = "";
+
+      const catGrid = document.createElement("div");
+      catGrid.className = "material-cat-grid";
+
+      const panels = [];
+      MATERIALS.forEach(mat => {
+        if (!state.materials[mat.id]) state.materials[mat.id] = [];
+
+        const card = document.createElement("div");
+        card.className = "material-cat-card";
+        card.innerHTML = `<img class="cat-img" src="${mat.img}" alt="${mat.name}" loading="lazy"><div class="cat-name">${mat.name}</div>`;
+        catGrid.appendChild(card);
+
+        const panel = document.createElement("div");
+        panel.className = "material-type-panel";
+        panel.innerHTML = `<div class="material-type-title">${mat.name}</div><div class="material-type-grid" id="mat-types-${mat.id}"></div>`;
+        panels.push({ card, panel, mat });
+      });
+
+      section.appendChild(catGrid);
+      panels.forEach(({ card, panel, mat }) => {
+        section.appendChild(panel);
+        card.addEventListener("click", () => {
+          const isOpen = panel.classList.contains("visible");
+          panels.forEach(p => { p.card.classList.remove("active"); p.panel.classList.remove("visible"); });
+          if (!isOpen) { card.classList.add("active"); panel.classList.add("visible"); }
+          renderMatTypes(mat.id);
+        });
+      });
+    }
+
+    function renderMatTypes(catId) {
+      const mat = MATERIALS.find(m => m.id === catId);
+      const container = document.getElementById("mat-types-" + catId);
+      if (!mat || !container) return;
+      container.innerHTML = "";
+      mat.types.forEach(t => {
+        const item = document.createElement("div");
+        item.className = "material-type-item" + (state.materials[catId].includes(t.id) ? " selected" : "");
+        item.innerHTML = `<img class="material-type-swatch" src="${t.img}" alt="${t.name}" loading="lazy"><span class="material-type-name">${t.name}</span>`;
+        item.addEventListener("click", () => {
+          const idx = state.materials[catId].indexOf(t.id);
+          if (idx === -1) { state.materials[catId].push(t.id); item.classList.add("selected"); }
+          else            { state.materials[catId].splice(idx, 1); item.classList.remove("selected"); }
+        });
+        container.appendChild(item);
+      });
+    }
+
+    function renderPhongCach() {
+      const container = document.getElementById("grid-phongcach");
+      if (!container) return;
+      container.innerHTML = "";
+      PHONG_CACH.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "selection-card" + (state.phong_cach.includes(item.id) ? " selected" : "");
+        card.innerHTML = `
+          <div class="card-img-wrap">
+            <img src="${item.img}" alt="${item.name}" loading="lazy" />
+            <div class="card-check"><svg viewBox="0 0 12 10"><polyline points="1,5 4,9 11,1"/></svg></div>
+          </div>
+          <div class="card-body">
+            <div class="card-title">${item.name}</div>
+          </div>`;
+        card.addEventListener("click", () => {
+          const idx = state.phong_cach.indexOf(item.id);
+          if (idx === -1) { state.phong_cach.push(item.id); card.classList.add("selected"); }
+          else            { state.phong_cach.splice(idx, 1); card.classList.remove("selected"); }
+        });
+        container.appendChild(card);
+      });
+    }
+
+    function renderCheckboxGrid(containerId, options, stateKey, otherInputId) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.innerHTML = "";
+      options.forEach(opt => {
+        const item = document.createElement("div");
+        item.className = "checkbox-item" + (state[stateKey].includes(opt) ? " checked" : "");
+        item.innerHTML = `<div class="checkbox-box"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,7 9,1"/></svg></div><span class="checkbox-label">${opt}</span>`;
+        item.addEventListener("click", () => {
+          const idx = state[stateKey].indexOf(opt);
+          if (idx === -1) { state[stateKey].push(opt); item.classList.add("checked"); }
+          else            { state[stateKey].splice(idx, 1); item.classList.remove("checked"); }
+          if (opt === "Khác" && otherInputId) {
+            const inp = document.getElementById(otherInputId);
+            if (inp) { inp.style.display = item.classList.contains("checked") ? "block" : "none"; if (!item.classList.contains("checked")) inp.value = ""; }
+          }
+        });
+        container.appendChild(item);
+      });
     }
 
     document.addEventListener("DOMContentLoaded", init);
